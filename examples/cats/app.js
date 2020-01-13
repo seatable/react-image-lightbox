@@ -159,7 +159,7 @@ class App extends Component {
     return (
       <div>
         <section className="page-header">
-          <h1 className="project-name">React Image Lightbox</h1>
+          <h1 className="project-name">Seafile React Image Lightbox</h1>
 
           <h2 className="project-tagline">
             Flexible lightbox component for displaying images with React
@@ -202,7 +202,7 @@ class App extends Component {
           <footer className="site-footer">
             <span className="site-footer-owner">
               <a href="https://github.com/frontend-collective/react-image-lightbox">
-                React Image Lightbox
+                Seafile React Image Lightbox
               </a>{' '}
               is maintained by{' '}
               <a href="https://github.com/frontend-collective">
