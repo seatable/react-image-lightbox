@@ -216,6 +216,7 @@ class ReactImageLightbox extends Component {
       this.windowContext.addEventListener(type, this.listeners[type]);
     });
 
+    document.addEventListener('wheel', this.handleWheel, { passive: false });
     this.loadAllImages();
   }
 
@@ -260,6 +261,7 @@ class ReactImageLightbox extends Component {
     Object.keys(this.listeners).forEach(type => {
       this.windowContext.removeEventListener(type, this.listeners[type]);
     });
+    document.removeEventListener('wheel', this.handleWheel, { passive: false });
     this.timeouts.forEach(tid => clearTimeout(tid));
   }
 
@@ -612,53 +614,28 @@ class ReactImageLightbox extends Component {
     // Prevent scrolling of the background
     event.stopPropagation();
 
-    const xThreshold = WHEEL_MOVE_X_THRESHOLD;
-    let actionDelay = 0;
-    const imageMoveDelay = 500;
-
     this.clearTimeout(this.resetScrollTimeout);
     this.resetScrollTimeout = this.setTimeout(() => {
       this.scrollX = 0;
       this.scrollY = 0;
     }, 300);
-
-    // Prevent rapid-fire zoom behavior
-    if (this.wheelActionTimeout !== null || this.isAnimating()) {
-      return;
-    }
-
-    if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) {
-      // handle horizontal scrolls with image moves
-      this.scrollY = 0;
-      this.scrollX += event.deltaX;
-
-      const bigLeapX = xThreshold / 2;
-      // If the scroll amount has accumulated sufficiently, or a large leap was taken
-      if (this.scrollX >= xThreshold || event.deltaX >= bigLeapX) {
-        // Scroll right moves to next
-        this.requestMoveNext(event);
-        actionDelay = imageMoveDelay;
-        this.scrollX = 0;
-      } else if (
-        this.scrollX <= -1 * xThreshold ||
-        event.deltaX <= -1 * bigLeapX
-      ) {
-        // Scroll left moves to previous
-        this.requestMovePrev(event);
-        actionDelay = imageMoveDelay;
-        this.scrollX = 0;
-      }
-    }
-
-    // Allow successive actions after the set delay
-    if (actionDelay !== 0) {
-      this.wheelActionTimeout = this.setTimeout(() => {
-        this.wheelActionTimeout = null;
-      }, actionDelay);
-    }
   }
 
   handleImageMouseWheel(event) {
+    // when gesture move up/down/left/right, event.deltaY is integer, move image
+    if (parseInt(event.deltaY) === parseFloat(event.deltaY)) {
+      if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+        let newOffsetY = this.state.offsetY + event.deltaY;
+        newOffsetY < 0 ? 0 : newOffsetY;
+        this.setState({ offsetY: newOffsetY });
+      } else {
+        let newOffsetX = this.state.offsetX + event.deltaX;
+        newOffsetX < 0 ? 0 : newOffsetX;
+        this.setState({ offsetX: newOffsetX });
+      }
+      return;
+    }
+    // when gesture zoom in or zoom out, event.deltaY is decimal, zoom image
     const yThreshold = WHEEL_MOVE_Y_THRESHOLD;
 
     if (Math.abs(event.deltaY) >= Math.abs(event.deltaX)) {
@@ -1024,6 +1001,10 @@ class ReactImageLightbox extends Component {
       y: a.y - (a.y - b.y) / 2,
     };
   }
+
+  handleWheel = event => {
+    event.preventDefault();
+  };
 
   handlePinchStart(pointerList) {
     if (!this.props.enableZoom) {

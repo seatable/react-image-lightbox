@@ -1,4 +1,4 @@
-# React Image Lightbox
+# Seafile React Image Lightbox
 
 [![NPM](https://nodei.co/npm/react-image-lightbox.png)](https://npmjs.org/package/react-image-lightbox) [![Build Status](https://travis-ci.org/frontend-collective/react-image-lightbox.svg?branch=master)](https://travis-ci.org/frontend-collective/react-image-lightbox) [![Coverage Status](https://coveralls.io/repos/github/frontend-collective/react-image-lightbox/badge.svg?branch=master)](https://coveralls.io/github/frontend-collective/react-image-lightbox?branch=master)
 
