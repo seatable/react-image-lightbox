@@ -27,13 +27,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/frontend-collective/react-image-lightbox.git"
+    "url": "https://github.com/seatable/react-image-lightbox.git"
   },
-  "homepage": "https://frontend-collective.github.io/react-image-lightbox",
-  "bugs": "https://github.com/frontend-collective/react-image-lightbox/issues",
-  "authors": [
-    "Chris Fritz"
-  ],
+  "homepage": "https://github.com/seatable/react-image-lightbox",
+  "bugs": "https://github.com/seatable/react-image-lightbox/issues",
+  "authors": "Seafile Ltd",
   "license": "MIT",
   "husky": {
     "hooks": {
