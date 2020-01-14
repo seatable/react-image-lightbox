@@ -24,6 +24,7 @@
     "no-unreachable": "warn",
     "no-class-assign": "warn",
     "no-unused-vars": "warn",
+    "no-undef": "off",
     "no-irregular-whitespace": "warn",
     "no-console": "warn",
     "no-useless-escape": "warn",

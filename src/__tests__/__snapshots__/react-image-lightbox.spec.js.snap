@@ -101,6 +101,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
             >
               <div
                 class="ril-outer ril__outer ril__outerAnimating  "
+                style="transition: opacity 300ms; animation-duration: 300ms; animation-direction: reverse;"
                 tabindex="-1"
               >
                 <div

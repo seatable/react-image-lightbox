@@ -12,7 +12,6 @@ import {
   MIN_ZOOM_LEVEL,
   MAX_ZOOM_LEVEL,
   ZOOM_RATIO,
-  WHEEL_MOVE_X_THRESHOLD,
   WHEEL_MOVE_Y_THRESHOLD,
   ZOOM_BUTTON_INCREMENT_SIZE,
   ACTION_NONE,
@@ -1708,7 +1707,7 @@ ReactImageLightbox.propTypes = {
   //-----------------------------
 
   // Set z-index style, etc., for the parent react-modal (format: https://github.com/reactjs/react-modal#styles )
-  reactModalStyle: PropTypes.shape({}),
+  reactModalStyle: PropTypes.object,
 
   // Padding (px) between the edge of the window and the lightbox
   imagePadding: PropTypes.number,
