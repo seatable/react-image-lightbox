@@ -27,6 +27,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onImageLoadError={[Function]}
   onMoveNextRequest={[Function]}
   onMovePrevRequest={[Function]}
+  onRotateImage={null}
   prevLabel="Previous image"
   prevSrc={null}
   prevSrcThumbnail={null}
@@ -109,7 +110,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                 >
                   <div
                     class="ril-image-current ril__image ril-not-loaded"
-                    style="transform: translate3d(0px,0px,0) scale3d(NaN,NaN,1);"
+                    style="transform: translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg);"
                   >
                     <div
                       class="ril__loadingContainer"
@@ -178,31 +179,35 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       class="ril-toolbar__item ril__toolbarItem"
                     >
                       <button
-                        aria-label="Zoom in"
-                        class="ril-zoom-in ril__toolbarItemChild ril__builtinButton ril__zoomInButton"
-                        type="button"
-                      />
-                    </li>
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
-                        aria-label="Zoom out"
-                        class="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
-                        disabled=""
-                        type="button"
-                      />
-                    </li>
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
                         aria-label="Close lightbox"
                         class="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                         type="button"
                       />
                     </li>
                   </ul>
+                </div>
+                <div
+                  class="ril-caption ril__caption"
+                >
+                  <li
+                    class="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      aria-label="Zoom in"
+                      class="ril-zoom-in ril__toolbarItemChild ril__builtinButton ril__zoomInButton"
+                      type="button"
+                    />
+                  </li>
+                  <li
+                    class="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      aria-label="Zoom out"
+                      class="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
+                      disabled=""
+                      type="button"
+                    />
+                  </li>
                 </div>
               </div>
             </div>
@@ -346,7 +351,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   key="/fake/image/src.jpgi0"
                   style={
                     Object {
-                      "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1)",
+                      "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg)",
                     }
                   }
                 >
@@ -429,29 +434,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     className="ril-toolbar__item ril__toolbarItem"
                   >
                     <button
-                      aria-label="Zoom in"
-                      className="ril-zoom-in ril__toolbarItemChild ril__builtinButton ril__zoomInButton"
-                      disabled={false}
-                      key="zoom-in"
-                      onClick={[Function]}
-                      type="button"
-                    />
-                  </li>
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
-                      aria-label="Zoom out"
-                      className="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
-                      disabled={true}
-                      key="zoom-out"
-                      type="button"
-                    />
-                  </li>
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
                       aria-label="Close lightbox"
                       className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                       key="close"
@@ -460,6 +442,34 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     />
                   </li>
                 </ul>
+              </div>
+              <div
+                className="ril-caption ril__caption"
+                onMouseDown={[Function]}
+              >
+                <li
+                  className="ril-toolbar__item ril__toolbarItem"
+                >
+                  <button
+                    aria-label="Zoom in"
+                    className="ril-zoom-in ril__toolbarItemChild ril__builtinButton ril__zoomInButton"
+                    disabled={false}
+                    key="zoom-in"
+                    onClick={[Function]}
+                    type="button"
+                  />
+                </li>
+                <li
+                  className="ril-toolbar__item ril__toolbarItem"
+                >
+                  <button
+                    aria-label="Zoom out"
+                    className="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
+                    disabled={true}
+                    key="zoom-out"
+                    type="button"
+                  />
+                </li>
               </div>
             </div>
           </div>
