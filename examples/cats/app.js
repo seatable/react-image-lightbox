@@ -109,6 +109,7 @@ class App extends Component {
     this.closeLightbox = this.closeLightbox.bind(this);
     this.moveNext = this.moveNext.bind(this);
     this.movePrev = this.movePrev.bind(this);
+    this.onRotateImage = this.onRotateImage.bind(this);
   }
 
   openLightbox() {
@@ -129,6 +130,10 @@ class App extends Component {
     this.setState(prevState => ({
       index: (prevState.index + images.length - 1) % images.length,
     }));
+  }
+
+  onRotateImage(deg) {
+    console.log(this.state.index, deg);
   }
 
   render() {
@@ -152,6 +157,7 @@ class App extends Component {
           onImageLoadError={App.onImageLoadError}
           imageTitle={titles[this.state.index]}
           imageCaption={captions[this.state.index]}
+          onRotateImage={this.onRotateImage}
         />
       );
     }

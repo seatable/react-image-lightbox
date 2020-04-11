@@ -60,15 +60,6 @@ describe('Lightbox structure', () => {
     expect(wrapper.find('.ril-zoom-in').length).toEqual(0);
   });
 
-  it('does not contain a caption bar when no caption is supplied', () => {
-    expect(wrapper.find('.ril-caption').length).toEqual(0);
-  });
-
-  it('contains a caption bar when a caption is supplied', () => {
-    wrapper.setProps({ caption: 'My Caption' });
-    expect(wrapper.find('.ril-caption').length).toEqual(0);
-  });
-
   it('contains custom toolbar buttons when supplied', () => {
     wrapper.setProps({
       toolbarButtons: [<button type="button" className="my-test-button" />],

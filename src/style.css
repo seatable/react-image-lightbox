@@ -23,6 +23,17 @@
   touch-action: none;
 }
 
+.ril__outer button.dtable-font {
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.ril__outer button.dtable-font:hover {
+  opacity: 1;
+}
+
 .ril__outerClosing {
   opacity: 0;
 }
@@ -114,11 +125,13 @@
   bottom: 0;
   max-height: 150px;
   overflow: auto;
+  justify-content: center;
 }
 
 .ril__captionContent {
   padding: 10px 20px;
   color: #fff;
+  margin: 0 auto;
 }
 
 .ril__toolbar {

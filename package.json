@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "description": "A lightbox component for React.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rm -rf fonts && mkdir fonts && cp -r ./src/media/fonts/* ./fonts && rollup -c",
     "build:demo": "parcel build examples/cats/index.html --out-dir build --public-url ./",
-    "clean": "rimraf dist style.css style.css.map",
+    "clean": "rimraf dist style.css style.css.map fonts",
     "clean:demo": "rimraf build",
     "start": "parcel examples/cats/index.html",
     "lint": "eslint .",
@@ -23,7 +23,8 @@
     "dist",
     "index.d.ts",
     "style.css",
-    "style.css.map"
+    "style.css.map",
+    "fonts"
   ],
   "repository": {
     "type": "git",
