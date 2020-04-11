@@ -1,6 +1,6 @@
 {
   "name": "@seafile/react-image-lightbox",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A lightbox component for React.js",
   "scripts": {
     "build": "rm -rf fonts && mkdir fonts && cp -r ./src/media/fonts/* ./fonts && rollup -c",

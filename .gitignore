@@ -1,7 +1,6 @@
 node_modules
 coverage
 npm-debug.log
-fonts
 
 # Editor and other tmp files
 *.swp
