@@ -1,11 +1,11 @@
 {
   "name": "@seafile/react-image-lightbox",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A lightbox component for React.js",
   "scripts": {
-    "build": "rm -rf fonts && mkdir fonts && cp -r ./src/media/fonts/* ./fonts && rollup -c",
+    "build": "rollup -c",
     "build:demo": "parcel build examples/cats/index.html --out-dir build --public-url ./",
-    "clean": "rimraf dist style.css style.css.map fonts",
+    "clean": "rimraf dist style.css style.css.map",
     "clean:demo": "rimraf build",
     "start": "parcel examples/cats/index.html",
     "lint": "eslint .",
@@ -23,8 +23,7 @@
     "dist",
     "index.d.ts",
     "style.css",
-    "style.css.map",
-    "fonts"
+    "style.css.map"
   ],
   "repository": {
     "type": "git",
