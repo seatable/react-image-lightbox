@@ -24,7 +24,6 @@ import {
   SOURCE_POINTER,
   MIN_SWIPE_DISTANCE,
 } from './constant';
-import './media/dtable-font.css';
 import './style.css';
 
 class ReactImageLightbox extends Component {
