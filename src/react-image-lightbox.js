@@ -1500,7 +1500,7 @@ class ReactImageLightbox extends Component {
           {prevSrc && (
             <button // Move to previous image button
               type="button"
-              className="ril-prev-button ril__navButtons ril__navButtonPrev"
+              className="ril-prev-button ril__navButtons ril__navButtonPrev dtable-font dtable-icon-left"
               key="prev"
               aria-label={this.props.prevLabel}
               onClick={!this.isAnimating() ? this.requestMovePrev : undefined} // Ignore clicks during animation
@@ -1510,7 +1510,7 @@ class ReactImageLightbox extends Component {
           {nextSrc && (
             <button // Move to next image button
               type="button"
-              className="ril-next-button ril__navButtons ril__navButtonNext"
+              className="ril-next-button ril__navButtons ril__navButtonNext dtable-font dtable-icon-right"
               key="next"
               aria-label={this.props.nextLabel}
               onClick={!this.isAnimating() ? this.requestMoveNext : undefined} // Ignore clicks during animation
@@ -1538,13 +1538,12 @@ class ReactImageLightbox extends Component {
                     {button}
                   </li>
                 ))}
-
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
                   type="button"
                   key="close"
                   aria-label={this.props.closeLabel}
-                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
+                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton dtable-font dtable-icon-fork-number"
                   onClick={!this.isAnimating() ? this.requestClose : undefined} // Ignore clicks during animation
                 />
               </li>
