@@ -1,6 +1,6 @@
 {
   "name": "@seafile/react-image-lightbox",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A lightbox component for React.js",
   "scripts": {
     "build": "rollup -c",

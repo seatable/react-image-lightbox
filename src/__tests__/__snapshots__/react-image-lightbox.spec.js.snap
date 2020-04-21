@@ -180,7 +180,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     >
                       <button
                         aria-label="Close lightbox"
-                        class="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
+                        class="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton dtable-font dtable-icon-fork-number"
                         type="button"
                       />
                     </li>
@@ -435,7 +435,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   >
                     <button
                       aria-label="Close lightbox"
-                      className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
+                      className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton dtable-font dtable-icon-fork-number"
                       key="close"
                       onClick={[Function]}
                       type="button"
