@@ -117,6 +117,7 @@ class ReactImageLightbox extends Component {
 
     this.closeIfClickInner = this.closeIfClickInner.bind(this);
     this.handleImageDoubleClick = this.handleImageDoubleClick.bind(this);
+    this.handleImageClick = this.handleImageClick.bind(this);
     this.handleImageMouseWheel = this.handleImageMouseWheel.bind(this);
     this.handleKeyInput = this.handleKeyInput.bind(this);
     this.handleMouseUp = this.handleMouseUp.bind(this);
@@ -674,6 +675,11 @@ class ReactImageLightbox extends Component {
         event.clientY
       );
     }
+  }
+
+  handleImageClick(event) {
+    event.stopPropagation();
+    event.nativeEvent.stopImmediatePropagation();
   }
 
   shouldHandleEvent(source) {
@@ -1398,6 +1404,7 @@ class ReactImageLightbox extends Component {
             {...(imageCrossOrigin ? { crossOrigin: imageCrossOrigin } : {})}
             className={`${imageClass} ril__image`}
             onDoubleClick={this.handleImageDoubleClick}
+            onClick={this.handleImageClick}
             onWheel={this.handleImageMouseWheel}
             onDragStart={e => e.preventDefault()}
             style={imageStyle}
