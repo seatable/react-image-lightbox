@@ -1282,6 +1282,7 @@ class ReactImageLightbox extends Component {
       imageTitle,
       nextSrc,
       prevSrc,
+      isDesktop,
       toolbarButtons,
       reactModalStyle,
       onAfterOpen,
@@ -1504,7 +1505,7 @@ class ReactImageLightbox extends Component {
             {images}
           </div>
 
-          {prevSrc && (
+          {prevSrc && isDesktop && (
             <button // Move to previous image button
               type="button"
               className="ril-prev-button ril__navButtons ril__navButtonPrev dtable-font dtable-icon-left"
@@ -1514,7 +1515,7 @@ class ReactImageLightbox extends Component {
             />
           )}
 
-          {nextSrc && (
+          {nextSrc && isDesktop && (
             <button // Move to next image button
               type="button"
               className="ril-next-button ril__navButtons ril__navButtonNext dtable-font dtable-icon-right"
@@ -1644,6 +1645,9 @@ class ReactImageLightbox extends Component {
 }
 
 ReactImageLightbox.propTypes = {
+  // desktop or not
+  isDesktop: PropTypes.bool,
+
   //-----------------------------
   // Image sources
   //-----------------------------
@@ -1785,6 +1789,7 @@ ReactImageLightbox.propTypes = {
 };
 
 ReactImageLightbox.defaultProps = {
+  isDesktop: true,
   imageTitle: null,
   imageCaption: null,
   toolbarButtons: null,
