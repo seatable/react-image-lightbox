@@ -630,11 +630,11 @@ class ReactImageLightbox extends Component {
     if (parseInt(event.deltaY) === parseFloat(event.deltaY)) {
       if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
         let newOffsetY = this.state.offsetY + event.deltaY;
-        newOffsetY < 0 ? 0 : newOffsetY;
+        newOffsetY = newOffsetY < 0 ? 0 : newOffsetY;
         this.setState({ offsetY: newOffsetY });
       } else {
         let newOffsetX = this.state.offsetX + event.deltaX;
-        newOffsetX < 0 ? 0 : newOffsetX;
+        newOffsetX = newOffsetX < 0 ? 0 : newOffsetX;
         this.setState({ offsetX: newOffsetX });
       }
       return;
