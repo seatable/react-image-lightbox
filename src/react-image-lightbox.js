@@ -1257,19 +1257,25 @@ class ReactImageLightbox extends Component {
   }
 
   saveRotateImage() {
-    if (this.props.onRotateImage && this.state.rotateDeg !== 0) {
+    if (
+      this.props.onRotateImage &&
+      this.state.rotateDeg !== 0 && this.state.rotateDeg !== 360
+    ) {
       this.props.onRotateImage(this.state.rotateDeg);
       this.setState({ rotateDeg: 0 });
     }
   }
 
   rotateImage() {
-    this.setState({
-      rotateDeg:
-        this.state.rotateDeg <= 0
-          ? this.state.rotateDeg + 270
-          : this.state.rotateDeg - 90,
-    });
+    const { isClockwiseRotate } = this.props;
+    let { rotateDeg } = this.state;
+    if (isClockwiseRotate) {
+      rotateDeg =
+        rotateDeg >= 360 ? this.state.rotateDeg - 270 : rotateDeg + 90;
+    } else {
+      rotateDeg = rotateDeg <= 0 ? this.state.rotateDeg + 270 : rotateDeg - 90;
+    }
+    this.setState({ rotateDeg });
   }
 
   render() {
@@ -1782,6 +1788,7 @@ ReactImageLightbox.propTypes = {
 
   imageLoadErrorMessage: PropTypes.node,
   onRotateImage: PropTypes.func,
+  isClockwiseRotate: PropTypes.bool,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -1818,6 +1825,7 @@ ReactImageLightbox.defaultProps = {
   zoomOutLabel: 'Zoom out',
   imageLoadErrorMessage: 'This image failed to load',
   onRotateImage: null,
+  isClockwiseRotate: false,
 };
 
 export default ReactImageLightbox;
