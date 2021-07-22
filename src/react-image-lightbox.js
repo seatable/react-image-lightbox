@@ -1257,19 +1257,20 @@ class ReactImageLightbox extends Component {
   }
 
   saveRotateImage() {
-    if (this.props.onRotateImage && this.state.rotateDeg !== 0) {
+    if (
+      this.props.onRotateImage &&
+      this.state.rotateDeg !== 0 &&
+      this.state.rotateDeg !== 360
+    ) {
       this.props.onRotateImage(this.state.rotateDeg);
       this.setState({ rotateDeg: 0 });
     }
   }
 
   rotateImage() {
-    this.setState({
-      rotateDeg:
-        this.state.rotateDeg <= 0
-          ? this.state.rotateDeg + 270
-          : this.state.rotateDeg - 90,
-    });
+    let { rotateDeg } = this.state;
+    rotateDeg = rotateDeg >= 360 ? this.state.rotateDeg - 270 : rotateDeg + 90;
+    this.setState({ rotateDeg });
   }
 
   render() {
