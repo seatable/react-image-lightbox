@@ -212,6 +212,10 @@
   animation-name: closeWindow;
 }
 
+.ril_rotateImageButton {
+  transform: rotateY(180deg);
+}
+
 @keyframes pointFade {
   0%,
   19.999%,

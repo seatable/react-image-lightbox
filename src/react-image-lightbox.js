@@ -1629,6 +1629,7 @@ class ReactImageLightbox extends Component {
                     'ril-zoom-out',
                     'ril__toolbarItemChild',
                     'ril__builtinButton',
+                    'ril_rotateImageButton',
                     'dtable-font dtable-icon-rotate',
                     ...(zoomLevel === MIN_ZOOM_LEVEL
                       ? ['ril__builtinButtonDisabled']
