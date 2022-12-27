@@ -1589,11 +1589,11 @@ class ReactImageLightbox extends Component {
               </li>
             </ul>
           </div>
-          {this.props.imageCaption && (
+          <div className="ril-caption ril__caption">
             <div className="ril-caption-content ril__captionContent">
-              {this.props.imageCaption}
+              {this.props.imageCaption && this.props.imageCaption}
             </div>
-          )}
+          </div>
         </div>
       </Modal>
     );
