@@ -209,6 +209,13 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     </li>
                   </ul>
                 </div>
+                <div
+                  class="ril-caption ril__caption"
+                >
+                  <div
+                    class="ril-caption-content ril__captionContent"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -469,6 +476,13 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     />
                   </li>
                 </ul>
+              </div>
+              <div
+                className="ril-caption ril__caption"
+              >
+                <div
+                  className="ril-caption-content ril__captionContent"
+                />
               </div>
             </div>
           </div>
