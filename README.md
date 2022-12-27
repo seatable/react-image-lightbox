@@ -134,12 +134,12 @@ After cloning the repository and running `npm install` inside, you can use the f
 npm start
 
 # Lints the code with eslint and my custom rules.
-yarn run lint
+npm run lint
 
 # Lints and builds the code, placing the result in the dist directory.
 # This build is necessary to reflect changes if you're
 #  `npm link`-ed to this repository from another local project.
-yarn run build
+npm run build
 ```
 
 Pull requests are welcome!
