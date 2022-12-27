@@ -1,6 +1,6 @@
 {
   "name": "@seafile/react-image-lightbox",
-  "version": "0.0.9",
+  "version": "0.0.11",
   "description": "A lightbox component for React.js",
   "scripts": {
     "build": "rollup -c",
@@ -10,10 +10,10 @@
     "start": "parcel examples/cats/index.html",
     "lint": "eslint .",
     "prettier": "prettier --write \"./**/*.{md,js,css}\" \"!./{build,dist}/**\" \"!./style.css*\"",
-    "prepublishOnly": "yarn run lint && yarn run test && yarn run build",
+    "prepublishOnly": "npm run lint && npm run test && npm run build",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "deploy": "yarn run build:demo && gh-pages -d build",
+    "deploy": "npm run build:demo && gh-pages -d build",
     "release": "standard-version"
   },
   "main": "dist/index.cjs.js",
@@ -44,17 +44,16 @@
     "> 1%"
   ],
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react-modal": "^3.11.1"
+    "prop-types": "^15.8.1",
+    "react-modal": "^3.16.1"
   },
   "peerDependencies": {
-    "react": "^16.x",
-    "react-dom": "^16.x"
+    "react": "^16.x || ^17.x",
+    "react-dom": "^16.x || ^17.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
-    "@babel/plugin-proposal-class-properties": "^7.8.0",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
     "autoprefixer": "^9.4.7",

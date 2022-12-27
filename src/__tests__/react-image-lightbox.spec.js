@@ -125,7 +125,12 @@ describe('Events', () => {
   jest.spyOn(zoomOutBtn.current, 'focus');
   jest.spyOn(zoomInBtn.current, 'focus');
 
-  it('Calls onAfterOpen when mounted', () => {
+  it('Calls onAfterOpen when mounted', async () => {
+    // Rough way to wait for react-modal to call its onAfterOpen,
+    // which is delayed by a requestAnimationFrame:
+    // https://github.com/reactjs/react-modal/blob/fb6bab5e7/src/components/ModalPortal.js#L226-L230
+    await new Promise(resolve => setTimeout(resolve));
+
     expect(mockFns.onAfterOpen).toHaveBeenCalledTimes(1);
     expect(mockFns.onAfterOpen).toHaveBeenCalledWith();
   });
