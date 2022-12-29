@@ -104,9 +104,6 @@ class ReactImageLightbox extends Component {
 
       // image load error for srcType
       loadErrorStatus: {},
-
-      // rotate image degree
-      rotateDeg: 0,
     };
 
     // Refs
@@ -135,7 +132,6 @@ class ReactImageLightbox extends Component {
     this.requestClose = this.requestClose.bind(this);
     this.requestMoveNext = this.requestMoveNext.bind(this);
     this.requestMovePrev = this.requestMovePrev.bind(this);
-    this.rotateImage = this.rotateImage.bind(this);
   }
 
   // eslint-disable-next-line camelcase
@@ -1191,7 +1187,6 @@ class ReactImageLightbox extends Component {
   requestClose(event) {
     // Call the parent close request
     const closeLightbox = () => {
-      this.saveRotateImage();
       this.props.onCloseRequest(event);
     };
 
@@ -1233,7 +1228,6 @@ class ReactImageLightbox extends Component {
     }
     this.keyPressed = false;
     this.moveRequested = true;
-    this.saveRotateImage();
 
     if (direction === 'prev') {
       this.keyCounter -= 1;
@@ -1256,23 +1250,6 @@ class ReactImageLightbox extends Component {
     this.requestMove('prev', event);
   }
 
-  saveRotateImage() {
-    if (
-      this.props.onRotateImage &&
-      this.state.rotateDeg !== 0 &&
-      this.state.rotateDeg !== 360
-    ) {
-      this.props.onRotateImage(this.state.rotateDeg);
-      this.setState({ rotateDeg: 0 });
-    }
-  }
-
-  rotateImage() {
-    let { rotateDeg } = this.state;
-    rotateDeg = rotateDeg >= 360 ? this.state.rotateDeg - 270 : rotateDeg + 90;
-    this.setState({ rotateDeg });
-  }
-
   render() {
     const {
       animationDisabled,
@@ -1289,7 +1266,6 @@ class ReactImageLightbox extends Component {
       onAfterOpen,
       imageCrossOrigin,
       reactModalProps,
-      onRotateImage,
     } = this.props;
     const {
       zoomLevel,
@@ -1297,7 +1273,6 @@ class ReactImageLightbox extends Component {
       offsetY,
       isClosing,
       loadErrorStatus,
-      rotateDeg,
     } = this.state;
 
     const boxSize = this.getLightboxRect();
@@ -1338,7 +1313,6 @@ class ReactImageLightbox extends Component {
         imageStyle.cursor = 'move';
       }
 
-      imageStyle.transform = `${imageStyle.transform} rotate(${rotateDeg}deg)`;
       // support IE 9 and 11
       const hasTrueValue = object =>
         Object.keys(object).some(key => object[key]);
@@ -1509,7 +1483,7 @@ class ReactImageLightbox extends Component {
           {prevSrc && isDesktop && (
             <button // Move to previous image button
               type="button"
-              className="ril-prev-button ril__navButtons ril__navButtonPrev dtable-font dtable-icon-left"
+              className="ril-prev-button ril__navButtons ril__navButtonPrev"
               key="prev"
               aria-label={this.props.prevLabel}
               onClick={!this.isAnimating() ? this.requestMovePrev : undefined} // Ignore clicks during animation
@@ -1519,7 +1493,7 @@ class ReactImageLightbox extends Component {
           {nextSrc && isDesktop && (
             <button // Move to next image button
               type="button"
-              className="ril-next-button ril__navButtons ril__navButtonNext dtable-font dtable-icon-right"
+              className="ril-next-button ril__navButtons ril__navButtonNext"
               key="next"
               aria-label={this.props.nextLabel}
               onClick={!this.isAnimating() ? this.requestMoveNext : undefined} // Ignore clicks during animation
@@ -1547,98 +1521,78 @@ class ReactImageLightbox extends Component {
                     {button}
                   </li>
                 ))}
+
+              {enableZoom && (
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button // Lightbox zoom in button
+                    type="button"
+                    key="zoom-in"
+                    aria-label={this.props.zoomInLabel}
+                    className={[
+                      'ril-zoom-in',
+                      'ril__toolbarItemChild',
+                      'ril__builtinButton',
+                      'ril__zoomInButton',
+                      ...(zoomLevel === MAX_ZOOM_LEVEL
+                        ? ['ril__builtinButtonDisabled']
+                        : []),
+                    ].join(' ')}
+                    ref={this.zoomInBtn}
+                    disabled={
+                      this.isAnimating() || zoomLevel === MAX_ZOOM_LEVEL
+                    }
+                    onClick={
+                      !this.isAnimating() && zoomLevel !== MAX_ZOOM_LEVEL
+                        ? this.handleZoomInButtonClick
+                        : undefined
+                    }
+                  />
+                </li>
+              )}
+
+              {enableZoom && (
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button // Lightbox zoom out button
+                    type="button"
+                    key="zoom-out"
+                    aria-label={this.props.zoomOutLabel}
+                    className={[
+                      'ril-zoom-out',
+                      'ril__toolbarItemChild',
+                      'ril__builtinButton',
+                      'ril__zoomOutButton',
+                      ...(zoomLevel === MIN_ZOOM_LEVEL
+                        ? ['ril__builtinButtonDisabled']
+                        : []),
+                    ].join(' ')}
+                    ref={this.zoomOutBtn}
+                    disabled={
+                      this.isAnimating() || zoomLevel === MIN_ZOOM_LEVEL
+                    }
+                    onClick={
+                      !this.isAnimating() && zoomLevel !== MIN_ZOOM_LEVEL
+                        ? this.handleZoomOutButtonClick
+                        : undefined
+                    }
+                  />
+                </li>
+              )}
+
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
                   type="button"
                   key="close"
                   aria-label={this.props.closeLabel}
-                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton dtable-font dtable-icon-fork-number"
+                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!this.isAnimating() ? this.requestClose : undefined} // Ignore clicks during animation
                 />
               </li>
             </ul>
           </div>
-          {/* <div className="ril-caption-content ril__captionContent">
-            {this.props.imageCaption}
-          </div> */}
-
-          {/* Image footer buttons */}
-          <div
-            // onWheel={this.handleCaptionMousewheel}
-            onMouseDown={event => event.stopPropagation()}
-            className="ril-caption ril__caption"
-            // ref={this.caption}
-          >
-            {enableZoom && (
-              <li className="ril-toolbar__item ril__toolbarItem">
-                <button // Lightbox zoom in button
-                  type="button"
-                  key="zoom-in"
-                  aria-label={this.props.zoomInLabel}
-                  className={[
-                    'ril-zoom-in',
-                    'ril__toolbarItemChild',
-                    'ril__builtinButton',
-                    'ril__zoomInButton',
-                    ...(zoomLevel === MAX_ZOOM_LEVEL
-                      ? ['ril__builtinButtonDisabled']
-                      : []),
-                  ].join(' ')}
-                  ref={this.zoomInBtn}
-                  disabled={this.isAnimating() || zoomLevel === MAX_ZOOM_LEVEL}
-                  onClick={
-                    !this.isAnimating() && zoomLevel !== MAX_ZOOM_LEVEL
-                      ? this.handleZoomInButtonClick
-                      : undefined
-                  }
-                />
-              </li>
-            )}
-
-            {enableZoom && (
-              <li className="ril-toolbar__item ril__toolbarItem">
-                <button // Lightbox zoom out button
-                  type="button"
-                  key="zoom-out"
-                  aria-label={this.props.zoomOutLabel}
-                  className={[
-                    'ril-zoom-out',
-                    'ril__toolbarItemChild',
-                    'ril__builtinButton',
-                    'ril__zoomOutButton',
-                    ...(zoomLevel === MIN_ZOOM_LEVEL
-                      ? ['ril__builtinButtonDisabled']
-                      : []),
-                  ].join(' ')}
-                  ref={this.zoomOutBtn}
-                  disabled={this.isAnimating() || zoomLevel === MIN_ZOOM_LEVEL}
-                  onClick={
-                    !this.isAnimating() && zoomLevel !== MIN_ZOOM_LEVEL
-                      ? this.handleZoomOutButtonClick
-                      : undefined
-                  }
-                />
-              </li>
-            )}
-
-            {onRotateImage && (
-              <li className="ril-toolbar__item ril__toolbarItem">
-                <button // Lightbox rotate button
-                  type="button"
-                  className={[
-                    'ril-zoom-out',
-                    'ril__toolbarItemChild',
-                    'ril__builtinButton',
-                    'ril_rotateImageButton',
-                    'dtable-font dtable-icon-rotate',
-                    ...(zoomLevel === MIN_ZOOM_LEVEL
-                      ? ['ril__builtinButtonDisabled']
-                      : []),
-                  ].join(' ')}
-                  onClick={this.rotateImage}
-                />
-              </li>
-            )}
+          <div className="ril-caption ril__caption">
+            <div className="ril-caption-content ril__captionContent">
+              {this.props.imageCaption && this.props.imageCaption}
+            </div>
           </div>
         </div>
       </Modal>
@@ -1787,7 +1741,6 @@ ReactImageLightbox.propTypes = {
   closeLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
-  onRotateImage: PropTypes.func,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -1824,7 +1777,6 @@ ReactImageLightbox.defaultProps = {
   zoomInLabel: 'Zoom in',
   zoomOutLabel: 'Zoom out',
   imageLoadErrorMessage: 'This image failed to load',
-  onRotateImage: null,
 };
 
 export default ReactImageLightbox;
