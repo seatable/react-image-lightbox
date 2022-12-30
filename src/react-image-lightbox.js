@@ -1509,7 +1509,7 @@ class ReactImageLightbox extends Component {
           {prevSrc && isDesktop && (
             <button // Move to previous image button
               type="button"
-              className="ril-prev-button ril__navButtons ril__navButtonPrev dtable-font dtable-icon-left"
+              className="ril-prev-button ril__navButtons ril__navButtonPrev"
               key="prev"
               aria-label={this.props.prevLabel}
               onClick={!this.isAnimating() ? this.requestMovePrev : undefined} // Ignore clicks during animation
@@ -1519,7 +1519,7 @@ class ReactImageLightbox extends Component {
           {nextSrc && isDesktop && (
             <button // Move to next image button
               type="button"
-              className="ril-next-button ril__navButtons ril__navButtonNext dtable-font dtable-icon-right"
+              className="ril-next-button ril__navButtons ril__navButtonNext"
               key="next"
               aria-label={this.props.nextLabel}
               onClick={!this.isAnimating() ? this.requestMoveNext : undefined} // Ignore clicks during animation
@@ -1552,7 +1552,7 @@ class ReactImageLightbox extends Component {
                   type="button"
                   key="close"
                   aria-label={this.props.closeLabel}
-                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton dtable-font dtable-icon-fork-number"
+                  className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!this.isAnimating() ? this.requestClose : undefined} // Ignore clicks during animation
                 />
               </li>
@@ -1626,14 +1626,11 @@ class ReactImageLightbox extends Component {
                 <button // Lightbox rotate button
                   type="button"
                   className={[
-                    'ril-zoom-out',
+                    'ril-rotate',
                     'ril__toolbarItemChild',
                     'ril__builtinButton',
+                    'ril__rotateButton',
                     'ril_rotateImageButton',
-                    'dtable-font dtable-icon-rotate',
-                    ...(zoomLevel === MIN_ZOOM_LEVEL
-                      ? ['ril__builtinButtonDisabled']
-                      : []),
                   ].join(' ')}
                   onClick={this.rotateImage}
                 />
