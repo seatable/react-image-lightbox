@@ -1682,9 +1682,9 @@ class ReactImageLightbox extends Component {
           </div>
         </div>
         {this.isMobile &&
-          <div className="dtable-image-footer-choice mobile-dtable-image-footer-choice">
+          <div className="image-footer-choice mobile-image-footer-choice">
             <div className="image-footer-icon">
-              <div className="d-flex">
+              <div>
                 {onRotateImage && (
                   <li className="ril-toolbar__item ril__toolbarItem">
                     <button
@@ -1695,7 +1695,7 @@ class ReactImageLightbox extends Component {
                         'ril__toolbarItemChild',
                         'ril__builtinButton',
                         'ril__rotateButton',
-                        'dtable-image-footer-choice-item',
+                        'image-footer-choice-item',
                       ].join(' ')}
                       onClick={this.rotateImage}
                     />
@@ -1710,7 +1710,7 @@ class ReactImageLightbox extends Component {
                         'ril__toolbarItemChild',
                         'ril__builtinButton',
                         'ril__downloadButton',
-                        'dtable-image-footer-choice-item',
+                        'image-footer-choice-item',
                       ].join(' ')}
                       onClick={this.props.onClickDownload}
                     />
@@ -1721,7 +1721,7 @@ class ReactImageLightbox extends Component {
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
-                    className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton dtable-image-footer-choice-item"
+                    className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton image-footer-choice-item"
                     onClick={this.props.onClickDelete}
                   />
                 </li>
