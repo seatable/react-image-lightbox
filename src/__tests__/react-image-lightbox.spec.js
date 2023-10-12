@@ -69,6 +69,19 @@ describe('Lightbox structure', () => {
     );
   });
 
+  it('contains toolbar buttons when callback functions supplied', () => {
+    wrapper.setProps({
+      onClickMoveUp: () => {},
+      onClickMoveDown: () => {},
+      onClickDelete: () => {},
+      onClickDownload: () => {},
+    });
+    expect(wrapper.find('.ril__upMoveButton').length).toEqual(1);
+    expect(wrapper.find('.ril__downMoveButton').length).toEqual(1);
+    expect(wrapper.find('.ril__deleteButton').length).toEqual(1);
+    expect(wrapper.find('.ril__downloadButton').length).toEqual(1);
+  });
+
   it('contains image title when supplied', () => {
     wrapper.setProps({
       imageTitle: <div className="my-image-title" />,
@@ -203,6 +216,11 @@ describe('Key bindings', () => {
   const mockCloseRequest = jest.fn();
   const mockMovePrevRequest = jest.fn();
   const mockMoveNextRequest = jest.fn();
+  const mockRotateImage = jest.fn();
+  const mockMoveUp = jest.fn();
+  const mockMoveDown = jest.fn();
+  const mockDeleteImage = jest.fn();
+  const mockDownloadImage = jest.fn();
 
   const wrapper = mount(
     <Lightbox
@@ -210,6 +228,11 @@ describe('Key bindings', () => {
       onCloseRequest={mockCloseRequest}
       onMovePrevRequest={mockMovePrevRequest}
       onMoveNextRequest={mockMoveNextRequest}
+      onRotateImage={mockRotateImage}
+      onClickMoveUp={mockMoveUp}
+      onClickMoveDown={mockMoveDown}
+      onClickDelete={mockDeleteImage}
+      onClickDownload={mockDownloadImage}
     />
   );
 
