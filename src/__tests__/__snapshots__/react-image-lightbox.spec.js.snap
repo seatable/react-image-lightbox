@@ -21,10 +21,10 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   nextSrc={null}
   nextSrcThumbnail={null}
   onAfterOpen={[Function]}
-  onClickDelete={[Function]}
-  onClickDownload={[Function]}
-  onClickMoveDown={[Function]}
-  onClickMoveUp={[Function]}
+  onClickDelete={null}
+  onClickDownload={null}
+  onClickMoveDown={null}
+  onClickMoveUp={null}
   onCloseRequest={[Function]}
   onImageLoad={[Function]}
   onImageLoadError={[Function]}
@@ -182,38 +182,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   <ul
                     class="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
                   >
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
-                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
-                        type="button"
-                      />
-                    </li>
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
-                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
-                        type="button"
-                      />
-                    </li>
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
-                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
-                        type="button"
-                      />
-                    </li>
-                    <li
-                      class="ril-toolbar__item ril__toolbarItem"
-                    >
-                      <button
-                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
-                        type="button"
-                      />
-                    </li>
                     <li
                       class="ril-toolbar__item ril__toolbarItem"
                     >
@@ -473,42 +441,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                 <ul
                   className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
                 >
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
-                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
-                      onClick={[Function]}
-                      type="button"
-                    />
-                  </li>
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
-                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
-                      onClick={[Function]}
-                      type="button"
-                    />
-                  </li>
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
-                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
-                      onClick={[Function]}
-                      type="button"
-                    />
-                  </li>
-                  <li
-                    className="ril-toolbar__item ril__toolbarItem"
-                  >
-                    <button
-                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
-                      onClick={[Function]}
-                      type="button"
-                    />
-                  </li>
                   <li
                     className="ril-toolbar__item ril__toolbarItem"
                   >
