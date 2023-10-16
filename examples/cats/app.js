@@ -19,7 +19,9 @@ const images = [image1, image2, image3, image4];
 const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb];
 
 const titles = [
-  '',
+  <span>
+    test-react-image-lightbox
+  </span>,
   <span>
     by&nbsp;
     <a className="creditLink" href="http://flickr.com/photos/titrans/">

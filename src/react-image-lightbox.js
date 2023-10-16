@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import {
+  isMobile,
   translate,
   getWindowWidth,
   getWindowHeight,
@@ -136,6 +137,7 @@ class ReactImageLightbox extends Component {
     this.requestMoveNext = this.requestMoveNext.bind(this);
     this.requestMovePrev = this.requestMovePrev.bind(this);
     this.rotateImage = this.rotateImage.bind(this);
+    this.isMobile = isMobile;
   }
 
   // eslint-disable-next-line camelcase
@@ -324,8 +326,10 @@ class ReactImageLightbox extends Component {
   // Get sizing for when an image is larger than the window
   getFitSizes(width, height, stretch) {
     const boxSize = this.getLightboxRect();
-    let maxHeight = boxSize.height - this.props.imagePadding * 2;
-    let maxWidth = boxSize.width - this.props.imagePadding * 2;
+    // Padding (px) between the edge of the window and the lightbox
+    const imagePadding = this.isMobile ? 0 : 70;
+    let maxHeight = boxSize.height - imagePadding * 2;
+    let maxWidth = boxSize.width - imagePadding * 2;
 
     if (!stretch) {
       maxHeight = Math.min(maxHeight, height);
@@ -1283,9 +1287,7 @@ class ReactImageLightbox extends Component {
       imageTitle,
       nextSrc,
       prevSrc,
-      isDesktop,
       toolbarButtons,
-      reactModalStyle,
       onAfterOpen,
       imageCrossOrigin,
       reactModalProps,
@@ -1302,9 +1304,10 @@ class ReactImageLightbox extends Component {
 
     const boxSize = this.getLightboxRect();
     let transitionStyle = {};
+    const isAnimating = this.isAnimating();
 
     // Transition settings for sliding animations
-    if (!animationDisabled && this.isAnimating()) {
+    if (!animationDisabled && isAnimating) {
       transitionStyle = {
         ...transitionStyle,
         transition: `transform ${animationDuration}ms`,
@@ -1437,6 +1440,13 @@ class ReactImageLightbox extends Component {
       x: -1 * boxSize.width,
     });
 
+    const reactModalStyle = Object.assign({}, {
+      overlay: {
+        zIndex: 1051,
+        backgroundColor: this.isMobile ? '#000' : 'transparent',
+      }
+    }, this.props.reactModalStyle);
+
     const modalStyle = {
       overlay: {
         zIndex: 1000,
@@ -1480,9 +1490,7 @@ class ReactImageLightbox extends Component {
       >
         <div // eslint-disable-line jsx-a11y/no-static-element-interactions
           // Floating modal with closing animations
-          className={`ril-outer ril__outer ril__outerAnimating ${
-            this.props.wrapperClassName
-          } ${isClosing ? 'ril-closing ril__outerClosing' : ''}`}
+          className={`ril-outer ril__outer ril__outerAnimating ${this.props.wrapperClassName} ${isClosing ? 'ril-closing ril__outerClosing' : ''} ${this.isMobile ? 'mobile-image-previewer' : 'PC-image-previewer'}`}
           style={{
             transition: `opacity ${animationDuration}ms`,
             animationDuration: `${animationDuration}ms`,
@@ -1506,23 +1514,23 @@ class ReactImageLightbox extends Component {
             {images}
           </div>
 
-          {prevSrc && isDesktop && (
+          {prevSrc && !this.isMobile && (
             <button // Move to previous image button
               type="button"
               className="ril-prev-button ril__navButtons ril__navButtonPrev"
               key="prev"
               aria-label={this.props.prevLabel}
-              onClick={!this.isAnimating() ? this.requestMovePrev : undefined} // Ignore clicks during animation
+              onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
             />
           )}
 
-          {nextSrc && isDesktop && (
+          {nextSrc && !this.isMobile && (
             <button // Move to next image button
               type="button"
               className="ril-next-button ril__navButtons ril__navButtonNext"
               key="next"
               aria-label={this.props.nextLabel}
-              onClick={!this.isAnimating() ? this.requestMoveNext : undefined} // Ignore clicks during animation
+              onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
             />
           )}
 
@@ -1547,13 +1555,49 @@ class ReactImageLightbox extends Component {
                     {button}
                   </li>
                 ))}
+              {this.props.onClickMoveUp && !this.isMobile &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                    onClick={!isAnimating ? this.props.onClickMoveUp : undefined}
+                  />
+                </li>
+              }
+              {this.props.onClickMoveDown && !this.isMobile &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                    onClick={!isAnimating ? this.props.onClickMoveDown : undefined}
+                  />
+                </li>
+              }
+              {this.props.onClickDelete && !this.isMobile &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
+                    onClick={!isAnimating ? this.props.onClickDelete : undefined}
+                  />
+                </li>
+              }
+              {this.props.onClickDownload && !this.isMobile &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
+                    onClick={!isAnimating ? this.props.onClickDownload : undefined}
+                  />
+                </li>
+              }
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
                   type="button"
                   key="close"
                   aria-label={this.props.closeLabel}
                   className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
-                  onClick={!this.isAnimating() ? this.requestClose : undefined} // Ignore clicks during animation
+                  onClick={!isAnimating ? this.requestClose : undefined} // Ignore clicks during animation
                 />
               </li>
             </ul>
@@ -1585,9 +1629,9 @@ class ReactImageLightbox extends Component {
                       : []),
                   ].join(' ')}
                   ref={this.zoomInBtn}
-                  disabled={this.isAnimating() || zoomLevel === MAX_ZOOM_LEVEL}
+                  disabled={isAnimating || zoomLevel === MAX_ZOOM_LEVEL}
                   onClick={
-                    !this.isAnimating() && zoomLevel !== MAX_ZOOM_LEVEL
+                    !isAnimating && zoomLevel !== MAX_ZOOM_LEVEL
                       ? this.handleZoomInButtonClick
                       : undefined
                   }
@@ -1611,9 +1655,9 @@ class ReactImageLightbox extends Component {
                       : []),
                   ].join(' ')}
                   ref={this.zoomOutBtn}
-                  disabled={this.isAnimating() || zoomLevel === MIN_ZOOM_LEVEL}
+                  disabled={isAnimating || zoomLevel === MIN_ZOOM_LEVEL}
                   onClick={
-                    !this.isAnimating() && zoomLevel !== MIN_ZOOM_LEVEL
+                    !isAnimating && zoomLevel !== MIN_ZOOM_LEVEL
                       ? this.handleZoomOutButtonClick
                       : undefined
                   }
@@ -1630,7 +1674,6 @@ class ReactImageLightbox extends Component {
                     'ril__toolbarItemChild',
                     'ril__builtinButton',
                     'ril__rotateButton',
-                    'ril_rotateImageButton',
                   ].join(' ')}
                   onClick={this.rotateImage}
                 />
@@ -1638,15 +1681,60 @@ class ReactImageLightbox extends Component {
             )}
           </div>
         </div>
+        {this.isMobile &&
+          <div className="image-footer-choice mobile-image-footer-choice">
+            <div className="image-footer-icon">
+              <div>
+                {onRotateImage && (
+                  <li className="ril-toolbar__item ril__toolbarItem">
+                    <button
+                      type="button"
+                      style={{marginRight: '16px'}}
+                      className={[
+                        'ril-rotate',
+                        'ril__toolbarItemChild',
+                        'ril__builtinButton',
+                        'ril__rotateButton',
+                        'image-footer-choice-item',
+                      ].join(' ')}
+                      onClick={this.rotateImage}
+                    />
+                  </li>
+                )}
+                {this.props.onClickDownload && (
+                  <li className="ril-toolbar__item ril__toolbarItem">
+                    <button
+                      type="button"
+                      className={[
+                        'ril-rotate',
+                        'ril__toolbarItemChild',
+                        'ril__builtinButton',
+                        'ril__downloadButton',
+                        'image-footer-choice-item',
+                      ].join(' ')}
+                      onClick={this.props.onClickDownload}
+                    />
+                  </li>
+                )}
+              </div>
+              {this.props.onClickDelete &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton image-footer-choice-item"
+                    onClick={this.props.onClickDelete}
+                  />
+                </li>
+              }
+            </div>
+          </div>
+        }
       </Modal>
     );
   }
 }
 
 ReactImageLightbox.propTypes = {
-  // desktop or not
-  isDesktop: PropTypes.bool,
-
   //-----------------------------
   // Image sources
   //-----------------------------
@@ -1703,6 +1791,12 @@ ReactImageLightbox.propTypes = {
   // Open window event
   onAfterOpen: PropTypes.func,
 
+  onRotateImage: PropTypes.func,
+  onClickMoveUp: PropTypes.func,
+  onClickMoveDown: PropTypes.func,
+  onClickDelete: PropTypes.func,
+  onClickDownload: PropTypes.func,
+
   //-----------------------------
   // Download discouragement settings
   //-----------------------------
@@ -1755,9 +1849,6 @@ ReactImageLightbox.propTypes = {
   // Set z-index style, etc., for the parent react-modal (format: https://github.com/reactjs/react-modal#styles )
   reactModalStyle: PropTypes.object,
 
-  // Padding (px) between the edge of the window and the lightbox
-  imagePadding: PropTypes.number,
-
   wrapperClassName: PropTypes.string,
 
   //-----------------------------
@@ -1784,11 +1875,9 @@ ReactImageLightbox.propTypes = {
   closeLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
-  onRotateImage: PropTypes.func,
 };
 
 ReactImageLightbox.defaultProps = {
-  isDesktop: true,
   imageTitle: null,
   imageCaption: null,
   toolbarButtons: null,
@@ -1800,7 +1889,6 @@ ReactImageLightbox.defaultProps = {
   closeLabel: 'Close lightbox',
   discourageDownloads: false,
   enableZoom: true,
-  imagePadding: 10,
   imageCrossOrigin: null,
   keyRepeatKeyupBonus: 40,
   keyRepeatLimit: 180,
@@ -1813,6 +1901,10 @@ ReactImageLightbox.defaultProps = {
   onImageLoad: () => {},
   onMoveNextRequest: () => {},
   onMovePrevRequest: () => {},
+  onClickMoveUp: () => {},
+  onClickMoveDown: () => {},
+  onClickDelete: () => {},
+  onClickDownload: () => {},
   prevLabel: 'Previous image',
   prevSrc: null,
   prevSrcThumbnail: null,

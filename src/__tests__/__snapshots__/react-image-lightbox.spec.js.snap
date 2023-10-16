@@ -12,9 +12,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   imageCaption={null}
   imageCrossOrigin={null}
   imageLoadErrorMessage="This image failed to load"
-  imagePadding={10}
   imageTitle={null}
-  isDesktop={true}
   keyRepeatKeyupBonus={40}
   keyRepeatLimit={180}
   mainSrc="/fake/image/src.jpg"
@@ -23,6 +21,10 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   nextSrc={null}
   nextSrcThumbnail={null}
   onAfterOpen={[Function]}
+  onClickDelete={[Function]}
+  onClickDownload={[Function]}
+  onClickMoveDown={[Function]}
+  onClickMoveUp={[Function]}
   onCloseRequest={[Function]}
   onImageLoad={[Function]}
   onImageLoadError={[Function]}
@@ -83,7 +85,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
         },
         "overlay": Object {
           "backgroundColor": "transparent",
-          "zIndex": 1000,
+          "zIndex": 1051,
         },
       }
     }
@@ -95,7 +97,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
         >
           <div
             class="ReactModal__Overlay"
-            style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: transparent; z-index: 1000;"
+            style="position: fixed; top: 0px; left: 0px; right: 0px; bottom: 0px; background-color: transparent; z-index: 1051;"
           >
             <div
               aria-label="Lightbox"
@@ -106,7 +108,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
               tabindex="-1"
             >
               <div
-                class="ril-outer ril__outer ril__outerAnimating  "
+                class="ril-outer ril__outer ril__outerAnimating   PC-image-previewer"
                 style="transition: opacity 300ms; animation-duration: 300ms; animation-direction: reverse;"
                 tabindex="-1"
               >
@@ -180,6 +182,38 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                   <ul
                     class="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
                   >
+                    <li
+                      class="ril-toolbar__item ril__toolbarItem"
+                    >
+                      <button
+                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                        type="button"
+                      />
+                    </li>
+                    <li
+                      class="ril-toolbar__item ril__toolbarItem"
+                    >
+                      <button
+                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                        type="button"
+                      />
+                    </li>
+                    <li
+                      class="ril-toolbar__item ril__toolbarItem"
+                    >
+                      <button
+                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
+                        type="button"
+                      />
+                    </li>
+                    <li
+                      class="ril-toolbar__item ril__toolbarItem"
+                    >
+                      <button
+                        class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
+                        type="button"
+                      />
+                    </li>
                     <li
                       class="ril-toolbar__item ril__toolbarItem"
                     >
@@ -284,7 +318,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
             },
             "overlay": Object {
               "backgroundColor": "transparent",
-              "zIndex": 1000,
+              "zIndex": 1051,
             },
           }
         }
@@ -301,7 +335,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
               "position": "fixed",
               "right": 0,
               "top": 0,
-              "zIndex": 1000,
+              "zIndex": 1051,
             }
           }
         >
@@ -334,7 +368,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
             tabIndex="-1"
           >
             <div
-              className="ril-outer ril__outer ril__outerAnimating  "
+              className="ril-outer ril__outer ril__outerAnimating   PC-image-previewer"
               onKeyDown={[Function]}
               onKeyUp={[Function]}
               onMouseDown={[Function]}
@@ -439,6 +473,42 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                 <ul
                   className="ril-toolbar-right ril__toolbarSide ril__toolbarRightSide"
                 >
+                  <li
+                    className="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                      onClick={[Function]}
+                      type="button"
+                    />
+                  </li>
+                  <li
+                    className="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                      onClick={[Function]}
+                      type="button"
+                    />
+                  </li>
+                  <li
+                    className="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
+                      onClick={[Function]}
+                      type="button"
+                    />
+                  </li>
+                  <li
+                    className="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
+                      onClick={[Function]}
+                      type="button"
+                    />
+                  </li>
                   <li
                     className="ril-toolbar__item ril__toolbarItem"
                   >

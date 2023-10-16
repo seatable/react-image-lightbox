@@ -33,11 +33,6 @@
   "bugs": "https://github.com/seatable/react-image-lightbox/issues",
   "authors": "Seafile Ltd",
   "license": "MIT",
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
   "browserslist": [
     "IE >= 11",
     "last 2 versions",
@@ -71,7 +66,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.16.0",
     "gh-pages": "^2.0.1",
-    "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-enzyme": "^7.0.1",
     "parcel-bundler": "^1.12.4",

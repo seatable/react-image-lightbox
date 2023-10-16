@@ -24,6 +24,8 @@ export function getWindowHeight() {
   return typeof global.window !== 'undefined' ? global.window.innerHeight : 0;
 }
 
+export const isMobile = (typeof (window) !== 'undefined') && (window.innerWidth < 768 || navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null);
+
 // Get the highest window context that isn't cross-origin
 // (When in an iframe)
 export function getHighestSafeWindowContext(self = global.window.self) {
