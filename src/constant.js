@@ -19,7 +19,9 @@ export const WHEEL_MOVE_Y_THRESHOLD = 1;
 export const KEYS = {
   ESC: 27,
   LEFT_ARROW: 37,
+  UP_ARROW: 38,
   RIGHT_ARROW: 39,
+  DOWN_ARROW: 40,
 };
 
 // Actions

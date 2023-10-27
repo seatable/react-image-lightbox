@@ -136,6 +136,8 @@ class ReactImageLightbox extends Component {
     this.requestClose = this.requestClose.bind(this);
     this.requestMoveNext = this.requestMoveNext.bind(this);
     this.requestMovePrev = this.requestMovePrev.bind(this);
+    this.requestMoveUp = this.requestMoveUp.bind(this);
+    this.requestMoveDown = this.requestMoveDown.bind(this);
     this.rotateImage = this.rotateImage.bind(this);
     this.isMobile = isMobile;
   }
@@ -611,6 +613,24 @@ class ReactImageLightbox extends Component {
         this.requestMoveNext(event);
         break;
 
+      // Up arrow key moves to upper row
+      case KEYS.UP_ARROW: {
+        if (this.props.onClickMoveUp) {
+          event.preventDefault();
+          this.keyPressed = true;
+          this.requestMoveUp(event);
+        }
+        break;
+      }
+      // Down arrow key moves to down row
+      case KEYS.DOWN_ARROW: {
+        if (this.props.onClickMoveUp) {
+          event.preventDefault();
+          this.keyPressed = true;
+          this.requestMoveDown(event);
+        }
+        break;
+      }
       default:
     }
   }
@@ -1243,10 +1263,21 @@ class ReactImageLightbox extends Component {
       this.keyCounter -= 1;
       this.setState(nextState);
       this.props.onMovePrevRequest(event);
-    } else {
+    }
+    else if (direction === 'next') {
       this.keyCounter += 1;
       this.setState(nextState);
       this.props.onMoveNextRequest(event);
+    }
+    else if (direction === 'up') {
+      this.keyCounter = 0;
+      this.setState(nextState);
+      this.props.onClickMoveUp(event);
+    }
+    else if (direction === 'down') {
+      this.keyCounter = 0;
+      this.setState(nextState);
+      this.props.onClickMoveDown(event);
     }
   }
 
@@ -1258,6 +1289,16 @@ class ReactImageLightbox extends Component {
   // Request to transition to the previous image
   requestMovePrev(event) {
     this.requestMove('prev', event);
+  }
+
+  // Request to transition to the up row image
+  requestMoveUp(event) {
+    this.requestMove('up', event);
+  }
+
+  // Request to transition to the down row image
+  requestMoveDown(event) {
+    this.requestMove('down', event);
   }
 
   saveRotateImage() {
@@ -1560,7 +1601,7 @@ class ReactImageLightbox extends Component {
                   <button
                     type="button"
                     className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
-                    onClick={!isAnimating ? this.props.onClickMoveUp : undefined}
+                    onClick={!isAnimating ? this.requestMoveUp : undefined}
                   />
                 </li>
               }
@@ -1569,7 +1610,7 @@ class ReactImageLightbox extends Component {
                   <button
                     type="button"
                     className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
-                    onClick={!isAnimating ? this.props.onClickMoveDown : undefined}
+                    onClick={!isAnimating ? this.requestMoveDown : undefined}
                   />
                 </li>
               }
