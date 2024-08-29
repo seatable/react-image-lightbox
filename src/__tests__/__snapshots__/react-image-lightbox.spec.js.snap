@@ -7,7 +7,10 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   animationOnKeyInput={false}
   clickOutsideToClose={true}
   closeLabel="Close lightbox"
+  deleteImageLabel="Delete image"
   discourageDownloads={false}
+  downloadImageLabel="Download image"
+  enableRotate={true}
   enableZoom={true}
   imageCaption={null}
   imageCrossOrigin={null}
@@ -43,7 +46,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
     }
   }
   reactModalStyle={Object {}}
+  rotateImageLabel="Rotate image"
   toolbarButtons={null}
+  viewOriginalImageLabel="View original image"
   wrapperClassName=""
   zoomInLabel="Zoom in"
   zoomOutLabel="Zoom out"
@@ -213,6 +218,15 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       aria-label="Zoom out"
                       class="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
                       disabled=""
+                      type="button"
+                    />
+                  </li>
+                  <li
+                    class="ril-toolbar__item ril__toolbarItem"
+                  >
+                    <button
+                      aria-label="Rotate image"
+                      class="ril-rotate ril__toolbarItemChild ril__builtinButton ril__rotateButton_2"
                       type="button"
                     />
                   </li>
@@ -485,6 +499,16 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     className="ril-zoom-out ril__toolbarItemChild ril__builtinButton ril__zoomOutButton ril__builtinButtonDisabled"
                     disabled={true}
                     key="zoom-out"
+                    type="button"
+                  />
+                </li>
+                <li
+                  className="ril-toolbar__item ril__toolbarItem"
+                >
+                  <button
+                    aria-label="Rotate image"
+                    className="ril-rotate ril__toolbarItemChild ril__builtinButton ril__rotateButton_2"
+                    onClick={[Function]}
                     type="button"
                   />
                 </li>
