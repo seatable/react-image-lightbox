@@ -12,7 +12,6 @@ export interface ILightBoxProps {
   onMoveNextRequest?(): void;
   onImageLoad?(): void;
   onImageLoadError?(): void;
-  enableRotate?: boolean;
   onRotateImage?(): void;
   imageLoadErrorMessage?: React.ReactNode;
   onAfterOpen?(): void;

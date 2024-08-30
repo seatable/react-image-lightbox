@@ -1325,7 +1325,6 @@ class ReactImageLightbox extends Component {
       clickOutsideToClose,
       discourageDownloads,
       enableZoom,
-      enableRotate,
       imageTitle,
       nextSrc,
       prevSrc,
@@ -1698,7 +1697,7 @@ class ReactImageLightbox extends Component {
                 />
               </li>
             )}
-            {enableRotate &&
+            {onRotateImage &&
             <li className="ril-toolbar__item ril__toolbarItem">
               <button // Lightbox rotate button
                 type="button"
@@ -1709,7 +1708,7 @@ class ReactImageLightbox extends Component {
                   'ril__builtinButton',
                   'ril__rotateButton_2',
                 ].join(' ')}
-                onClick={onRotateImage ?? this.rotateImage}
+                onClick={this.rotateImage}
               />
             </li>
             }
@@ -1757,7 +1756,7 @@ class ReactImageLightbox extends Component {
           <div className="image-footer-choice mobile-image-footer-choice">
             <div className="image-footer-icon">
               <div className='image-footer-right-icons'>
-                {enableRotate && (
+                {onRotateImage && (
                   <li className="ril-toolbar__item ril__toolbarItem">
                     <button
                       type="button"
@@ -1770,7 +1769,7 @@ class ReactImageLightbox extends Component {
                         'ril__rotateButton',
                         'image-footer-choice-item',
                       ].join(' ')}
-                      onClick={onRotateImage ?? this.rotateImage}
+                      onClick={this.rotateImage}
                     />
                   </li>
                 )}
@@ -1866,7 +1865,6 @@ ReactImageLightbox.propTypes = {
   // Open window event
   onAfterOpen: PropTypes.func,
 
-  enableRotate: PropTypes.bool,
   onRotateImage: PropTypes.func,
   onClickMoveUp: PropTypes.func,
   onClickMoveDown: PropTypes.func,
@@ -1996,7 +1994,6 @@ ReactImageLightbox.defaultProps = {
   zoomInLabel: 'Zoom in',
   zoomOutLabel: 'Zoom out',
   imageLoadErrorMessage: 'This image failed to load',
-  enableRotate: true,
   onRotateImage: null,
   rotateImageLabel: 'Rotate image',
   onViewOriginal: null,
