@@ -7,7 +7,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   animationOnKeyInput={false}
   clickOutsideToClose={true}
   closeLabel="Close lightbox"
+  deleteImageLabel="Delete image"
   discourageDownloads={false}
+  downloadImageLabel="Download image"
   enableZoom={true}
   imageCaption={null}
   imageCrossOrigin={null}
@@ -31,6 +33,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onMoveNextRequest={[Function]}
   onMovePrevRequest={[Function]}
   onRotateImage={null}
+  onViewOriginal={null}
   prevLabel="Previous image"
   prevSrc={null}
   prevSrcThumbnail={null}
@@ -42,7 +45,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
     }
   }
   reactModalStyle={Object {}}
+  rotateImageLabel="Rotate image"
   toolbarButtons={null}
+  viewOriginalImageLabel="View original image"
   wrapperClassName=""
   zoomInLabel="Zoom in"
   zoomOutLabel="Zoom out"
@@ -215,6 +220,12 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       type="button"
                     />
                   </li>
+                  <div
+                    class="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
+                  />
+                  <div
+                    class="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
+                  />
                 </div>
               </div>
             </div>
@@ -481,6 +492,12 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     type="button"
                   />
                 </li>
+                <div
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
+                />
+                <div
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
+                />
               </div>
             </div>
           </div>
