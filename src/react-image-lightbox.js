@@ -1697,62 +1697,62 @@ class ReactImageLightbox extends Component {
                 />
               </li>
             )}
-            {onRotateImage &&
-            <li className="ril-toolbar__item ril__toolbarItem">
-              <button // Lightbox rotate button
-                type="button"
-                aria-label={rotateImageLabel}
-                className={[
-                  'ril-rotate',
-                  'ril__toolbarItemChild',
-                  'ril__builtinButton',
-                  'ril__rotateButton_2',
-                ].join(' ')}
-                onClick={this.rotateImage}
-              />
-            </li>
-            }
-            {!this.isMobile &&
+            {onRotateImage && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button // Lightbox rotate button
+                  type="button"
+                  aria-label={rotateImageLabel}
+                  className={[
+                    'ril-rotate',
+                    'ril__toolbarItemChild',
+                    'ril__builtinButton',
+                    'ril__rotateButton_2',
+                  ].join(' ')}
+                  onClick={this.rotateImage}
+                />
+              </li>
+            )}
+            {!this.isMobile && (onClickDownload || onClickDelete) && (
               <div className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"></div>
-            }
-            {onClickDownload && !this.isMobile &&
-            <li className="ril-toolbar__item ril__toolbarItem">
-              <button
-                type="button"
-                aria-label={downloadImageLabel}
-                className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
-                onClick={onClickDownload}
-              />
-            </li>
-            }
-            {onClickDelete && !this.isMobile &&
-            <li className="ril-toolbar__item ril__toolbarItem">
-              <button
-                type="button"
-                aria-label={deleteImageLabel}
-                className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
-                onClick={onClickDelete}
-              />
-            </li>
-            }
-            {!this.isMobile &&
+            )}
+            {onClickDownload && !this.isMobile && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={downloadImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
+                  onClick={onClickDownload}
+                />
+              </li>
+            )}
+            {onClickDelete && !this.isMobile && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={deleteImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
+                  onClick={onClickDelete}
+                />
+              </li>
+            )}
+            {!this.isMobile && onViewOriginal && (
               <div className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"></div>
-            }
-            {onViewOriginal &&
-            <li className="ril-toolbar__item ril__toolbarItem">
-              <button
-                type="button"
-                aria-label={viewOriginalImageLabel}
-                className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__viewOriginalButton"
-                onClick={onViewOriginal}
-              >
-                {viewOriginalImageLabel}
-              </button>
-            </li>
-            }
+            )}
+            {onViewOriginal && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={viewOriginalImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__viewOriginalButton"
+                  onClick={onViewOriginal}
+                >
+                  {viewOriginalImageLabel}
+                </button>
+              </li>
+            )}
           </div>
         </div>
-        {this.isMobile &&
+        {this.isMobile && (
           <div className="image-footer-choice mobile-image-footer-choice">
             <div className="image-footer-icon">
               <div className='image-footer-right-icons'>
@@ -1802,7 +1802,7 @@ class ReactImageLightbox extends Component {
               }
             </div>
           </div>
-        }
+        )}
       </Modal>
     );
   }
