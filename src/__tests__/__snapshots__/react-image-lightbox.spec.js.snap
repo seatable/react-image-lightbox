@@ -220,12 +220,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       type="button"
                     />
                   </li>
-                  <div
-                    class="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
-                  />
-                  <div
-                    class="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
-                  />
                 </div>
               </div>
             </div>
@@ -492,12 +486,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                     type="button"
                   />
                 </li>
-                <div
-                  className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
-                />
-                <div
-                  className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"
-                />
               </div>
             </div>
           </div>
