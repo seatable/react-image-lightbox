@@ -1345,6 +1345,8 @@ class ReactImageLightbox extends Component {
       zoomOutLabel,
       viewOriginalImageLabel,
       rotateImageLabel,
+      onOCR,
+      OCRLabel,
     } = this.props;
     const {
       zoomLevel,
@@ -1735,8 +1737,18 @@ class ReactImageLightbox extends Component {
                 />
               </li>
             )}
-            {!this.isMobile && onViewOriginal && (
+            {!this.isMobile && (onViewOriginal || onOCR) && (
               <div className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"></div>
+            )}
+            {onOCR && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={OCRLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__OCR"
+                  onClick={onOCR}
+                />
+              </li>
             )}
             {onViewOriginal && (
               <li className="ril-toolbar__item ril__toolbarItem">
@@ -1952,6 +1964,8 @@ ReactImageLightbox.propTypes = {
   deleteImageLabel: PropTypes.string,
   rotateImageLabel: PropTypes.string,
   viewOriginalImageLabel: PropTypes.string,
+  onOCR: PropTypes.func,
+  OCRLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
 };
@@ -1998,6 +2012,9 @@ ReactImageLightbox.defaultProps = {
   rotateImageLabel: 'Rotate image',
   onViewOriginal: null,
   viewOriginalImageLabel: 'View original image',
+  onOCR: null,
+  OCRLabel: 'OCR',
+
 };
 
 export default ReactImageLightbox;
