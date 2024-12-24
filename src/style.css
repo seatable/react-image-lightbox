@@ -173,7 +173,7 @@
 }
 
 .ril__viewOriginalButton {
-  width:fit-content;
+  width: fit-content !important;
   text-align: center;
   color: #fff;
   font-size: 14px;
