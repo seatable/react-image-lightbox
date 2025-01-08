@@ -108,6 +108,8 @@ class ReactImageLightbox extends Component {
 
       // rotate image degree
       rotateDeg: 0,
+
+      expanded: false,
     };
 
     // Refs
@@ -1318,6 +1320,10 @@ class ReactImageLightbox extends Component {
     this.setState({ rotateDeg });
   }
 
+  toggleSidePanel() {
+    this.setState({ expanded: !this.state.expanded });
+  }
+
   render() {
     const {
       animationDisabled,
@@ -1355,6 +1361,7 @@ class ReactImageLightbox extends Component {
       isClosing,
       loadErrorStatus,
       rotateDeg,
+      expanded,
     } = this.state;
 
     const boxSize = this.getLightboxRect();
@@ -1383,7 +1390,6 @@ class ReactImageLightbox extends Component {
         return;
       }
       const bestImageInfo = this.getBestImageForType(srcType);
-
       const imageStyle = {
         ...transitionStyle,
         ...ReactImageLightbox.getTransform({
@@ -1391,7 +1397,6 @@ class ReactImageLightbox extends Component {
           ...bestImageInfo,
         }),
       };
-
       if (zoomLevel > MIN_ZOOM_LEVEL) {
         imageStyle.cursor = 'move';
       }
@@ -1561,32 +1566,49 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
-          <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+          <div className="lightbox-content">
+            <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
             // Image holder
-            className="ril-inner ril__inner"
-            onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
-          >
-            {images}
+              className="ril-inner ril__inner"
+              onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
+            >
+              {images}
+            </div>
+
+            {prevSrc && !this.isMobile && (
+              <button // Move to previous image button
+                type="button"
+                className="ril-prev-button ril__navButtons ril__navButtonPrev"
+                key="prev"
+                aria-label={this.props.prevLabel}
+                onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
+              />
+            )}
+
+            {nextSrc && !this.isMobile && (
+              <button // Move to next image button
+                type="button"
+                className="ril-next-button ril__navButtons ril__navButtonNext"
+                key="next"
+                aria-label={this.props.nextLabel}
+                onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
+              />
+            )}
           </div>
 
-          {prevSrc && !this.isMobile && (
-            <button // Move to previous image button
-              type="button"
-              className="ril-prev-button ril__navButtons ril__navButtonPrev"
-              key="prev"
-              aria-label={this.props.prevLabel}
-              onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
-            />
-          )}
-
-          {nextSrc && !this.isMobile && (
-            <button // Move to next image button
-              type="button"
-              className="ril-next-button ril__navButtons ril__navButtonNext"
-              key="next"
-              aria-label={this.props.nextLabel}
-              onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
-            />
+          {this.props.onRenderSidePanel && (
+            <div className={`lightbox-side-panel ${expanded ? 'expanded' : 'collapsed'}`} aria-expanded={expanded}>
+              <div className="side-panel-controller">
+                <button
+                  type="button"
+                  className={`expand-button ${expanded ? 'ril__collapseButton' : 'ril__expandButton'}`}
+                  key={expanded ? 'collapse' : 'expand'}
+                  onClick={this.toggleSidePanel.bind(this)}
+                  aria-label={expanded ? 'Collapse side panel' : 'Expand side panel'}
+                />
+              </div>
+              {expanded && this.props.onRenderSidePanel()}
+            </div>
           )}
 
           <div // Lightbox toolbar
@@ -1968,6 +1990,8 @@ ReactImageLightbox.propTypes = {
   OCRLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
+
+  onRenderSidePanel: PropTypes.func,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -2014,7 +2038,7 @@ ReactImageLightbox.defaultProps = {
   viewOriginalImageLabel: 'View original image',
   onOCR: null,
   OCRLabel: 'OCR',
-
+  onRenderSidePanel: null,
 };
 
 export default ReactImageLightbox;
