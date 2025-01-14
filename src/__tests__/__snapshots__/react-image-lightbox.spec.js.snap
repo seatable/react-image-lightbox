@@ -34,7 +34,6 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onMoveNextRequest={[Function]}
   onMovePrevRequest={[Function]}
   onOCR={null}
-  onRenderSidePanel={null}
   onRotateImage={null}
   onViewOriginal={null}
   prevLabel="Previous image"
@@ -49,6 +48,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   }
   reactModalStyle={Object {}}
   rotateImageLabel="Rotate image"
+  sidePanel={null}
   toolbarButtons={null}
   viewOriginalImageLabel="View original image"
   wrapperClassName=""
@@ -121,58 +121,54 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                 tabindex="-1"
               >
                 <div
-                  class="lightbox-content"
+                  class="ril-inner ril__inner"
                 >
                   <div
-                    class="ril-inner ril__inner"
+                    class="ril-image-current ril__image ril-not-loaded"
+                    style="transform: translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg);"
                   >
                     <div
-                      class="ril-image-current ril__image ril-not-loaded"
-                      style="transform: translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg);"
+                      class="ril__loadingContainer"
                     >
                       <div
-                        class="ril__loadingContainer"
+                        class="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
                       >
                         <div
-                          class="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-                        >
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                          <div
-                            class="ril-loading-circle-point ril__loadingCirclePoint"
-                          />
-                        </div>
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
+                        <div
+                          class="ril-loading-circle-point ril__loadingCirclePoint"
+                        />
                       </div>
                     </div>
                   </div>
@@ -366,76 +362,73 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
               tabIndex="-1"
             >
               <div
-                className="lightbox-content"
+                className="ril-inner ril__inner"
+                onClick={[Function]}
+                style={Object {}}
               >
                 <div
-                  className="ril-inner ril__inner"
-                  onClick={[Function]}
+                  className="ril-image-current ril__image ril-not-loaded"
+                  key="/fake/image/src.jpgi0"
+                  style={
+                    Object {
+                      "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg)",
+                    }
+                  }
                 >
                   <div
-                    className="ril-image-current ril__image ril-not-loaded"
-                    key="/fake/image/src.jpgi0"
-                    style={
-                      Object {
-                        "transform": "translate3d(0px,0px,0) scale3d(NaN,NaN,1) rotate(0deg)",
-                      }
-                    }
+                    className="ril__loadingContainer"
                   >
                     <div
-                      className="ril__loadingContainer"
+                      className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
                     >
                       <div
-                        className="ril-loading-circle ril__loadingCircle ril__loadingContainer__icon"
-                      >
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="0"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="1"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="2"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="3"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="4"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="5"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="6"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="7"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="8"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="9"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="10"
-                        />
-                        <div
-                          className="ril-loading-circle-point ril__loadingCirclePoint"
-                          key="11"
-                        />
-                      </div>
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="0"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="1"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="2"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="3"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="4"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="5"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="6"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="7"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="8"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="9"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="10"
+                      />
+                      <div
+                        className="ril-loading-circle-point ril__loadingCirclePoint"
+                        key="11"
+                      />
                     </div>
                   </div>
                 </div>

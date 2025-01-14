@@ -108,8 +108,6 @@ class ReactImageLightbox extends Component {
 
       // rotate image degree
       rotateDeg: 0,
-
-      expanded: false,
     };
 
     // Refs
@@ -1320,10 +1318,6 @@ class ReactImageLightbox extends Component {
     this.setState({ rotateDeg });
   }
 
-  toggleSidePanel() {
-    this.setState({ expanded: !this.state.expanded });
-  }
-
   render() {
     const {
       animationDisabled,
@@ -1353,6 +1347,7 @@ class ReactImageLightbox extends Component {
       rotateImageLabel,
       onOCR,
       OCRLabel,
+      sidePanel,
     } = this.props;
     const {
       zoomLevel,
@@ -1361,7 +1356,6 @@ class ReactImageLightbox extends Component {
       isClosing,
       loadErrorStatus,
       rotateDeg,
-      expanded,
     } = this.state;
 
     const boxSize = this.getLightboxRect();
@@ -1390,6 +1384,7 @@ class ReactImageLightbox extends Component {
         return;
       }
       const bestImageInfo = this.getBestImageForType(srcType);
+
       const imageStyle = {
         ...transitionStyle,
         ...ReactImageLightbox.getTransform({
@@ -1397,6 +1392,7 @@ class ReactImageLightbox extends Component {
           ...bestImageInfo,
         }),
       };
+
       if (zoomLevel > MIN_ZOOM_LEVEL) {
         imageStyle.cursor = 'move';
       }
@@ -1566,50 +1562,37 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
-          <div className="lightbox-content">
-            <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
+          <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
             // Image holder
-              className="ril-inner ril__inner"
-              onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
-            >
-              {images}
-            </div>
-
-            {prevSrc && !this.isMobile && (
-              <button // Move to previous image button
-                type="button"
-                className="ril-prev-button ril__navButtons ril__navButtonPrev"
-                key="prev"
-                aria-label={this.props.prevLabel}
-                onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
-              />
-            )}
-
-            {nextSrc && !this.isMobile && (
-              <button // Move to next image button
-                type="button"
-                className="ril-next-button ril__navButtons ril__navButtonNext"
-                key="next"
-                aria-label={this.props.nextLabel}
-                onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
-              />
-            )}
+            className="ril-inner ril__inner"
+            onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
+            style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
+          >
+            {images}
           </div>
 
-          {this.props.onRenderSidePanel && (
-            <div className={`lightbox-side-panel ${expanded ? 'expanded' : 'collapsed'}`} aria-expanded={expanded}>
-              <div className="side-panel-controller">
-                <button
-                  type="button"
-                  className={`expand-button ${expanded ? 'ril__collapseButton' : 'ril__expandButton'}`}
-                  key={expanded ? 'collapse' : 'expand'}
-                  onClick={this.toggleSidePanel.bind(this)}
-                  aria-label={expanded ? 'Collapse side panel' : 'Expand side panel'}
-                />
-              </div>
-              {expanded && this.props.onRenderSidePanel()}
-            </div>
+          {prevSrc && !this.isMobile && (
+            <button // Move to previous image button
+              type="button"
+              className="ril-prev-button ril__navButtons ril__navButtonPrev"
+              key="prev"
+              aria-label={this.props.prevLabel}
+              onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
+            />
           )}
+
+          {nextSrc && !this.isMobile && (
+            <button // Move to next image button
+              type="button"
+              className="ril-next-button ril__navButtons ril__navButtonNext"
+              key="next"
+              aria-label={this.props.nextLabel}
+              style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
+              onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
+            />
+          )}
+
+          {sidePanel && sidePanel.render()}
 
           <div // Lightbox toolbar
             className="ril-toolbar ril__toolbar"
@@ -1991,7 +1974,7 @@ ReactImageLightbox.propTypes = {
 
   imageLoadErrorMessage: PropTypes.node,
 
-  onRenderSidePanel: PropTypes.func,
+  sidePanel: PropTypes.object,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -2038,7 +2021,7 @@ ReactImageLightbox.defaultProps = {
   viewOriginalImageLabel: 'View original image',
   onOCR: null,
   OCRLabel: 'OCR',
-  onRenderSidePanel: null,
+  sidePanel: null,
 };
 
 export default ReactImageLightbox;
