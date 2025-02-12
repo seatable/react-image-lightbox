@@ -48,6 +48,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   }
   reactModalStyle={Object {}}
   rotateImageLabel="Rotate image"
+  sidePanel={null}
   toolbarButtons={null}
   viewOriginalImageLabel="View original image"
   wrapperClassName=""
@@ -363,6 +364,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
               <div
                 className="ril-inner ril__inner"
                 onClick={[Function]}
+                style={Object {}}
               >
                 <div
                   className="ril-image-current ril__image ril-not-loaded"

@@ -1347,6 +1347,7 @@ class ReactImageLightbox extends Component {
       rotateImageLabel,
       onOCR,
       OCRLabel,
+      sidePanel,
     } = this.props;
     const {
       zoomLevel,
@@ -1565,6 +1566,7 @@ class ReactImageLightbox extends Component {
             // Image holder
             className="ril-inner ril__inner"
             onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
+            style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
           >
             {images}
           </div>
@@ -1585,9 +1587,12 @@ class ReactImageLightbox extends Component {
               className="ril-next-button ril__navButtons ril__navButtonNext"
               key="next"
               aria-label={this.props.nextLabel}
+              style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
               onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
             />
           )}
+
+          {sidePanel && sidePanel.render()}
 
           <div // Lightbox toolbar
             className="ril-toolbar ril__toolbar"
@@ -1968,6 +1973,8 @@ ReactImageLightbox.propTypes = {
   OCRLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
+
+  sidePanel: PropTypes.object,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -2014,7 +2021,7 @@ ReactImageLightbox.defaultProps = {
   viewOriginalImageLabel: 'View original image',
   onOCR: null,
   OCRLabel: 'OCR',
-
+  sidePanel: null,
 };
 
 export default ReactImageLightbox;
