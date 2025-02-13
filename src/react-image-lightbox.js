@@ -1314,7 +1314,11 @@ class ReactImageLightbox extends Component {
 
   rotateImage() {
     let { rotateDeg } = this.state;
-    rotateDeg = rotateDeg >= 360 ? this.state.rotateDeg - 270 : rotateDeg + 90;
+    // Rotate the image counterclockwise, decreasing the angle by 90 degrees
+    rotateDeg = rotateDeg - 90;
+    if (rotateDeg < 0) {
+      rotateDeg = rotateDeg + 360;
+    }
     this.setState({ rotateDeg });
   }
 
@@ -1710,6 +1714,7 @@ class ReactImageLightbox extends Component {
                     'ril__builtinButton',
                     'ril__rotateButton_2',
                   ].join(' ')}
+                  style={{marginBottom: 4}}
                   onClick={this.rotateImage}
                 />
               </li>
