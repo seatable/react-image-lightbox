@@ -162,6 +162,7 @@ class App extends Component {
           onClickDownload={() => {}}
           onClickDelete={() => {}}
           onViewOriginal={() => {}}
+          onRotateImage={() => {}}
         />
       );
     }
