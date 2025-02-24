@@ -1,6 +1,6 @@
 {
   "name": "@seafile/react-image-lightbox",
-  "version": "2.0.10",
+  "version": "4.0.0",
   "description": "A lightbox component for React.js",
   "scripts": {
     "build": "rollup -c",
@@ -43,8 +43,8 @@
     "react-modal": "^3.16.1"
   },
   "peerDependencies": {
-    "react": "^16.x || ^17.x",
-    "react-dom": "^16.x || ^17.x"
+    "react": "^16.x || ^17.x || ^18.x",
+    "react-dom": "^16.x || ^17.x || ^18.x"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
