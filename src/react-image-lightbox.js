@@ -1314,7 +1314,11 @@ class ReactImageLightbox extends Component {
 
   rotateImage() {
     let { rotateDeg } = this.state;
-    rotateDeg = rotateDeg >= 360 ? this.state.rotateDeg - 270 : rotateDeg + 90;
+    // Rotate the image counterclockwise, decreasing the angle by 90 degrees
+    rotateDeg = rotateDeg - 90;
+    if (rotateDeg < 0) {
+      rotateDeg = rotateDeg + 360;
+    }
     this.setState({ rotateDeg });
   }
 
@@ -1333,6 +1337,20 @@ class ReactImageLightbox extends Component {
       imageCrossOrigin,
       reactModalProps,
       onRotateImage,
+      onClickDownload,
+      onClickDelete,
+      onViewOriginal,
+      onClickMoveUp,
+      onClickMoveDown,
+      closeLabel,
+      downloadImageLabel,
+      deleteImageLabel,
+      zoomInLabel,
+      zoomOutLabel,
+      viewOriginalImageLabel,
+      rotateImageLabel,
+      onOCR,
+      OCRLabel,
     } = this.props;
     const {
       zoomLevel,
@@ -1596,7 +1614,7 @@ class ReactImageLightbox extends Component {
                     {button}
                   </li>
                 ))}
-              {this.props.onClickMoveUp && !this.isMobile &&
+              {onClickMoveUp && !this.isMobile &&
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
@@ -1605,7 +1623,7 @@ class ReactImageLightbox extends Component {
                   />
                 </li>
               }
-              {this.props.onClickMoveDown && !this.isMobile &&
+              {onClickMoveDown && !this.isMobile &&
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
@@ -1614,38 +1632,18 @@ class ReactImageLightbox extends Component {
                   />
                 </li>
               }
-              {this.props.onClickDelete && !this.isMobile &&
-                <li className="ril-toolbar__item ril__toolbarItem">
-                  <button
-                    type="button"
-                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
-                    onClick={!isAnimating ? this.props.onClickDelete : undefined}
-                  />
-                </li>
-              }
-              {this.props.onClickDownload && !this.isMobile &&
-                <li className="ril-toolbar__item ril__toolbarItem">
-                  <button
-                    type="button"
-                    className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
-                    onClick={!isAnimating ? this.props.onClickDownload : undefined}
-                  />
-                </li>
-              }
+
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
                   type="button"
                   key="close"
-                  aria-label={this.props.closeLabel}
+                  aria-label={closeLabel}
                   className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!isAnimating ? this.requestClose : undefined} // Ignore clicks during animation
                 />
               </li>
             </ul>
           </div>
-          {/* <div className="ril-caption-content ril__captionContent">
-            {this.props.imageCaption}
-          </div> */}
 
           {/* Image footer buttons */}
           <div
@@ -1659,7 +1657,7 @@ class ReactImageLightbox extends Component {
                 <button // Lightbox zoom in button
                   type="button"
                   key="zoom-in"
-                  aria-label={this.props.zoomInLabel}
+                  aria-label={zoomInLabel}
                   className={[
                     'ril-zoom-in',
                     'ril__toolbarItemChild',
@@ -1685,7 +1683,7 @@ class ReactImageLightbox extends Component {
                 <button // Lightbox zoom out button
                   type="button"
                   key="zoom-out"
-                  aria-label={this.props.zoomOutLabel}
+                  aria-label={zoomOutLabel}
                   className={[
                     'ril-zoom-out',
                     'ril__toolbarItemChild',
@@ -1705,32 +1703,82 @@ class ReactImageLightbox extends Component {
                 />
               </li>
             )}
-
             {onRotateImage && (
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox rotate button
                   type="button"
+                  aria-label={rotateImageLabel}
                   className={[
                     'ril-rotate',
                     'ril__toolbarItemChild',
                     'ril__builtinButton',
-                    'ril__rotateButton',
+                    'ril__rotateButton_2',
                   ].join(' ')}
+                  style={{marginBottom: 4}}
                   onClick={this.rotateImage}
                 />
               </li>
             )}
+            {!this.isMobile && (onClickDownload || onClickDelete) && (
+              <div className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"></div>
+            )}
+            {onClickDownload && !this.isMobile && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={downloadImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
+                  onClick={onClickDownload}
+                />
+              </li>
+            )}
+            {onClickDelete && !this.isMobile && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={deleteImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
+                  onClick={onClickDelete}
+                />
+              </li>
+            )}
+            {!this.isMobile && (onViewOriginal || onOCR) && (
+              <div className="ril-toolbar__item__child ril__toolbarItemChild ril__divider"></div>
+            )}
+            {onOCR && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={OCRLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__OCR"
+                  onClick={onOCR}
+                />
+              </li>
+            )}
+            {onViewOriginal && (
+              <li className="ril-toolbar__item ril__toolbarItem">
+                <button
+                  type="button"
+                  aria-label={viewOriginalImageLabel}
+                  className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__viewOriginalButton"
+                  onClick={onViewOriginal}
+                >
+                  {viewOriginalImageLabel}
+                </button>
+              </li>
+            )}
           </div>
         </div>
-        {this.isMobile &&
+        {this.isMobile && (
           <div className="image-footer-choice mobile-image-footer-choice">
             <div className="image-footer-icon">
-              <div>
+              <div className='image-footer-right-icons'>
                 {onRotateImage && (
                   <li className="ril-toolbar__item ril__toolbarItem">
                     <button
                       type="button"
                       style={{marginRight: '16px'}}
+                      aria-label={rotateImageLabel}
                       className={[
                         'ril-rotate',
                         'ril__toolbarItemChild',
@@ -1742,10 +1790,11 @@ class ReactImageLightbox extends Component {
                     />
                   </li>
                 )}
-                {this.props.onClickDownload && (
+                {onClickDownload && (
                   <li className="ril-toolbar__item ril__toolbarItem">
                     <button
                       type="button"
+                      aria-label={downloadImageLabel}
                       className={[
                         'ril-rotate',
                         'ril__toolbarItemChild',
@@ -1753,23 +1802,24 @@ class ReactImageLightbox extends Component {
                         'ril__downloadButton',
                         'image-footer-choice-item',
                       ].join(' ')}
-                      onClick={this.props.onClickDownload}
+                      onClick={onClickDownload}
                     />
                   </li>
                 )}
               </div>
-              {this.props.onClickDelete &&
+              {onClickDelete &&
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
+                    aria-label={deleteImageLabel}
                     className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton image-footer-choice-item"
-                    onClick={this.props.onClickDelete}
+                    onClick={onClickDelete}
                   />
                 </li>
               }
             </div>
           </div>
-        }
+        )}
       </Modal>
     );
   }
@@ -1837,6 +1887,7 @@ ReactImageLightbox.propTypes = {
   onClickMoveDown: PropTypes.func,
   onClickDelete: PropTypes.func,
   onClickDownload: PropTypes.func,
+  onViewOriginal: PropTypes.func,
 
   //-----------------------------
   // Download discouragement settings
@@ -1914,6 +1965,12 @@ ReactImageLightbox.propTypes = {
   zoomInLabel: PropTypes.string,
   zoomOutLabel: PropTypes.string,
   closeLabel: PropTypes.string,
+  downloadImageLabel: PropTypes.string,
+  deleteImageLabel: PropTypes.string,
+  rotateImageLabel: PropTypes.string,
+  viewOriginalImageLabel: PropTypes.string,
+  onOCR: PropTypes.func,
+  OCRLabel: PropTypes.string,
 
   imageLoadErrorMessage: PropTypes.node,
 };
@@ -1944,7 +2001,9 @@ ReactImageLightbox.defaultProps = {
   onMovePrevRequest: () => {},
   onClickMoveUp: null,
   onClickMoveDown: null,
+  deleteImageLabel: 'Delete image',
   onClickDelete: null,
+  downloadImageLabel: 'Download image',
   onClickDownload: null,
   prevLabel: 'Previous image',
   prevSrc: null,
@@ -1955,6 +2014,12 @@ ReactImageLightbox.defaultProps = {
   zoomOutLabel: 'Zoom out',
   imageLoadErrorMessage: 'This image failed to load',
   onRotateImage: null,
+  rotateImageLabel: 'Rotate image',
+  onViewOriginal: null,
+  viewOriginalImageLabel: 'View original image',
+  onOCR: null,
+  OCRLabel: 'OCR',
+
 };
 
 export default ReactImageLightbox;

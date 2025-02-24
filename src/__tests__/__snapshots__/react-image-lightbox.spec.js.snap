@@ -2,12 +2,15 @@
 
 exports[`Snapshot Testing Lightbox renders properly" 1`] = `
 <ReactImageLightbox
+  OCRLabel="OCR"
   animationDisabled={false}
   animationDuration={300}
   animationOnKeyInput={false}
   clickOutsideToClose={true}
   closeLabel="Close lightbox"
+  deleteImageLabel="Delete image"
   discourageDownloads={false}
+  downloadImageLabel="Download image"
   enableZoom={true}
   imageCaption={null}
   imageCrossOrigin={null}
@@ -30,7 +33,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onImageLoadError={[Function]}
   onMoveNextRequest={[Function]}
   onMovePrevRequest={[Function]}
+  onOCR={null}
   onRotateImage={null}
+  onViewOriginal={null}
   prevLabel="Previous image"
   prevSrc={null}
   prevSrcThumbnail={null}
@@ -42,7 +47,9 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
     }
   }
   reactModalStyle={Object {}}
+  rotateImageLabel="Rotate image"
   toolbarButtons={null}
+  viewOriginalImageLabel="View original image"
   wrapperClassName=""
   zoomInLabel="Zoom in"
   zoomOutLabel="Zoom out"
