@@ -30,9 +30,14 @@
 .ril__inner {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 88px;
   right: 0;
   bottom: 0;
+}
+
+.ril-sidebar.ril__sidebar {
+  display: flex;
+  height: 100vh;
 }
 
 .ril__image,
@@ -80,12 +85,22 @@
   left: 0;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjcyMzkyNjY0MTMzIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjEyNDkwIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cGF0aCBkPSJNNDEyIDUxNS4ybDM2MS42LTM2MS42YzIyLjQtMTkuMiAyMi40LTU0LjQgMC03Ni44cy01Ny42LTIyLjQtNzYuOCAwbC00MDYuNCA0MDBjLTIyLjQgMjIuNC0yMi40IDU3LjYgMCA3Ni44bDQwNi40IDQwMy4yYzIyLjQgMjIuNCA1Ny42IDIyLjQgNzYuOCAwczIyLjQtNTcuNiAwLTc2LjhsLTM2MS42LTM2NC44eiIgZmlsbD0iI2ZmZmZmZiIgcC1pZD0iMTI0OTEiPjwvcGF0aD48L3N2Zz4=)
     no-repeat center;
+  border-radius: 50%;
+  padding: 30px;
+  background-color: rgba(225, 225, 225, 0.75);
+  margin-left: 20px;
+  background-position: 45% center;
 }
 
 .ril__outer .ril__navButtonNext {
   right: 0;
   background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjcyMzkxOTM4MzIwIiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjExOTg2IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIj48cGF0aCBkPSJNNjQwIDUxNS4yTDI3OC40IDE1My42Yy0yMi40LTE5LjItMjIuNC01NC40IDAtNzYuOHM1Ny42LTIyLjQgNzYuOCAwbDQwNi40IDQwMGMyMi40IDIyLjQgMjIuNCA1Ny42IDAgNzYuOEwzNTUuMiA5NTYuOGMtMjIuNCAyMi40LTU3LjYgMjIuNC03Ni44IDBzLTIyLjQtNTcuNiAwLTc2LjhMNjQwIDUxNS4yeiIgZmlsbD0iI2ZmZmZmZiIgcC1pZD0iMTE5ODciPjwvcGF0aD48L3N2Zz4=)
     no-repeat center;
+  border-radius: 50%;
+  padding: 30px;
+  background-color: rgba(225, 225, 225, 0.75);
+  margin-right: 20px;
+  background-position: 55% center;
 }
 
 .ril__downloadBlocker {
