@@ -26,6 +26,7 @@ import {
   MIN_SWIPE_DISTANCE,
 } from './constant';
 import './style.css';
+import SidebarThumbnails from './components/sidebarThumbnails';
 
 class ReactImageLightbox extends Component {
   static isTargetMatchImage(target) {
@@ -1036,6 +1037,10 @@ class ReactImageLightbox extends Component {
   }
 
   handleWheel = event => {
+    const sidebar = document.querySelector('.thumbnail-sidebar');
+    if (sidebar && sidebar.contains(event.target)) {
+      return;
+    }
     event.preventDefault();
   };
 
@@ -1324,6 +1329,9 @@ class ReactImageLightbox extends Component {
 
   render() {
     const {
+      imageItems,
+      currentIndex,
+      setImageIndex,
       animationDisabled,
       animationDuration,
       clickOutsideToClose,
@@ -1360,6 +1368,8 @@ class ReactImageLightbox extends Component {
       loadErrorStatus,
       rotateDeg,
     } = this.state;
+    console.log(1, imageItems, imageTitle);
+    console.log(2, currentIndex);
 
     const boxSize = this.getLightboxRect();
     let transitionStyle = {};
@@ -1565,15 +1575,26 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
+          {imageItems.length > 1 && 
+            <div className="ril-sidebar ril__sidebar">
+              <SidebarThumbnails
+              imageItems={imageItems}
+              currentIndex={currentIndex}
+              setImageIndex={setImageIndex}
+              // mainSrc={this.props.mainSrc}
+            />
+            </div>
+          }
           <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
             // Image holder
             className="ril-inner ril__inner"
             onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
           >
+
             {images}
           </div>
 
-          {prevSrc && !this.isMobile && (
+          {imageItems.length ===0 && prevSrc && !this.isMobile && (
             <button // Move to previous image button
               type="button"
               className="ril-prev-button ril__navButtons ril__navButtonPrev"
@@ -1583,7 +1604,7 @@ class ReactImageLightbox extends Component {
             />
           )}
 
-          {nextSrc && !this.isMobile && (
+          {imageItems.length ===0 && nextSrc && !this.isMobile && (
             <button // Move to next image button
               type="button"
               className="ril-next-button ril__navButtons ril__navButtonNext"
@@ -1828,6 +1849,9 @@ class ReactImageLightbox extends Component {
 ReactImageLightbox.propTypes = {
   //-----------------------------
   // Image sources
+  imageItems: PropTypes.arrayOf(PropTypes.string),
+  currentIndex: PropTypes.number,
+  setImageIndex: PropTypes.func,
   //-----------------------------
 
   // Main display image url
@@ -1976,8 +2000,9 @@ ReactImageLightbox.propTypes = {
 };
 
 ReactImageLightbox.defaultProps = {
-  imageTitle: null,
-  imageCaption: null,
+  imageItems: [],
+  currentIndex: null,
+  setImageIndex: () => {},
   toolbarButtons: null,
   reactModalProps: {},
   animationDisabled: false,
@@ -2019,7 +2044,6 @@ ReactImageLightbox.defaultProps = {
   viewOriginalImageLabel: 'View original image',
   onOCR: null,
   OCRLabel: 'OCR',
-
 };
 
 export default ReactImageLightbox;
