@@ -26,6 +26,7 @@ import {
   MIN_SWIPE_DISTANCE,
 } from './constant';
 import './style.css';
+import SidebarThumbnails from './components/left-sidebar-thumbnail/sidebar-thumbnails';
 
 class ReactImageLightbox extends Component {
   static isTargetMatchImage(target) {
@@ -1035,7 +1036,11 @@ class ReactImageLightbox extends Component {
     };
   }
 
-  handleWheel = event => {
+  handleWheel(event){
+    const sidebar = document.querySelector('.thumbnail-sidebar');
+    if (sidebar && sidebar.contains(event.target)) {
+      return;
+    }
     event.preventDefault();
   };
 
@@ -1324,6 +1329,9 @@ class ReactImageLightbox extends Component {
 
   render() {
     const {
+      imageItems,
+      currentIndex,
+      setImageIndex,
       animationDisabled,
       animationDuration,
       clickOutsideToClose,
@@ -1352,6 +1360,8 @@ class ReactImageLightbox extends Component {
       onOCR,
       OCRLabel,
       sidePanel,
+      metadataLabe,
+      onClickMetadata
     } = this.props;
     const {
       zoomLevel,
@@ -1566,6 +1576,15 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
+          {imageItems.length > 1 &&
+            <div className="ril-sidebar ril__sidebar">
+              <SidebarThumbnails
+              imageItems={imageItems}
+              currentIndex={currentIndex}
+              setImageIndex={setImageIndex}
+            />
+            </div>
+          }
           <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
             // Image holder
             className="ril-inner ril__inner"
@@ -1575,7 +1594,7 @@ class ReactImageLightbox extends Component {
             {images}
           </div>
 
-          {prevSrc && !this.isMobile && (
+          {imageItems.length ===0 && prevSrc && !this.isMobile && (
             <button // Move to previous image button
               type="button"
               className="ril-prev-button ril__navButtons ril__navButtonPrev"
@@ -1585,7 +1604,7 @@ class ReactImageLightbox extends Component {
             />
           )}
 
-          {nextSrc && !this.isMobile && (
+          {imageItems.length ===0 && nextSrc && !this.isMobile && (
             <button // Move to next image button
               type="button"
               className="ril-next-button ril__navButtons ril__navButtonNext"
@@ -1634,6 +1653,16 @@ class ReactImageLightbox extends Component {
                     type="button"
                     className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
                     onClick={!isAnimating ? this.requestMoveDown : undefined}
+                  />
+                </li>
+              }
+              {sidePanel && !this.isMobile &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    aria-label={metadataLabe}
+                    className="ril-metadata ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__openMetadataButton"
+                    onClick={onClickMetadata}
                   />
                 </li>
               }
@@ -1761,7 +1790,7 @@ class ReactImageLightbox extends Component {
               </li>
             )}
             {onViewOriginal && (
-              <li className="ril-toolbar__item ril__toolbarItem">
+              <li className="ril-toolbar__item ril__toolbarItem view-original-button">
                 <button
                   type="button"
                   aria-label={viewOriginalImageLabel}
@@ -1835,6 +1864,8 @@ ReactImageLightbox.propTypes = {
   // Image sources
   //-----------------------------
 
+  currentIndex: PropTypes.number,
+  setImageIndex: PropTypes.func,
   // Main display image url
   mainSrc: PropTypes.string.isRequired, // eslint-disable-line react/no-unused-prop-types
 
@@ -1893,6 +1924,7 @@ ReactImageLightbox.propTypes = {
   onClickDelete: PropTypes.func,
   onClickDownload: PropTypes.func,
   onViewOriginal: PropTypes.func,
+  onClickMetadata: PropTypes.func,
 
   //-----------------------------
   // Download discouragement settings
@@ -1974,6 +2006,7 @@ ReactImageLightbox.propTypes = {
   deleteImageLabel: PropTypes.string,
   rotateImageLabel: PropTypes.string,
   viewOriginalImageLabel: PropTypes.string,
+  metadataLabe: PropTypes.string,
   onOCR: PropTypes.func,
   OCRLabel: PropTypes.string,
 
@@ -1982,6 +2015,9 @@ ReactImageLightbox.propTypes = {
 };
 
 ReactImageLightbox.defaultProps = {
+  imageItems: [],
+  currentIndex: null,
+  setImageIndex: () => {},
   imageTitle: null,
   imageCaption: null,
   toolbarButtons: null,
@@ -2011,6 +2047,7 @@ ReactImageLightbox.defaultProps = {
   onClickDelete: null,
   downloadImageLabel: 'Download image',
   onClickDownload: null,
+  onClickMetadata: null,
   prevLabel: 'Previous image',
   prevSrc: null,
   prevSrcThumbnail: null,
@@ -2018,6 +2055,7 @@ ReactImageLightbox.defaultProps = {
   wrapperClassName: '',
   zoomInLabel: 'Zoom in',
   zoomOutLabel: 'Zoom out',
+  metadataLabe: 'Metadata',
   imageLoadErrorMessage: 'This image failed to load',
   onRotateImage: null,
   rotateImageLabel: 'Rotate image',
