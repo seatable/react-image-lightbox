@@ -1576,7 +1576,7 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
-          {imageItems.length > 1 &&
+          {imageItems && imageItems.length > 1 &&
             <div className="ril-sidebar ril__sidebar">
               <SidebarThumbnails
               imageItems={imageItems}
@@ -1594,7 +1594,7 @@ class ReactImageLightbox extends Component {
             {images}
           </div>
 
-          {imageItems.length ===0 && prevSrc && !this.isMobile && (
+          {/* {prevSrc && !this.isMobile && (
             <button // Move to previous image button
               type="button"
               className="ril-prev-button ril__navButtons ril__navButtonPrev"
@@ -1602,9 +1602,9 @@ class ReactImageLightbox extends Component {
               aria-label={this.props.prevLabel}
               onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
             />
-          )}
+          )} */}
 
-          {imageItems.length ===0 && nextSrc && !this.isMobile && (
+          {/* {nextSrc && !this.isMobile && (
             <button // Move to next image button
               type="button"
               className="ril-next-button ril__navButtons ril__navButtonNext"
@@ -1613,7 +1613,7 @@ class ReactImageLightbox extends Component {
               style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
               onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
             />
-          )}
+          )} */}
 
           {sidePanel && sidePanel.render()}
 
