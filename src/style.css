@@ -67,11 +67,15 @@
   bottom: 85px;
   left: 0;
   margin: auto;
-  max-width: 100%;
+  max-width: none;
   -ms-content-zooming: none;
   -ms-user-select: none;
   -ms-touch-select: none;
   touch-action: none;
+}
+
+.ril__outer:has(.lightbox-side-panel.active) .ril__image {
+  max-width: 100%;
 }
 
 .ril__imageDiscourager {
