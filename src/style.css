@@ -30,9 +30,13 @@
 .ril__inner {
   position: absolute;
   top: 0;
-  left: 128px;
+  left: 0;
   right: 0;
   bottom: 0;
+}
+
+.ril__outer:has(.ril__sidebar) .ril__inner {
+  left: 128px;
 }
 
 .ril__outer:has(.lightbox-side-panel.active) .ril__inner {
