@@ -43,6 +43,17 @@
   right: 300px;
 }
 
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .ril__inner {
+    left: 0 !important;
+    right: 0 !important;
+  }
+  .ril__image {
+    max-width: none !important;
+  }
+}
+
 .ril-sidebar.ril__sidebar {
   display: flex;
   box-sizing: border-box;
