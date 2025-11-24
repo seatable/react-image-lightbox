@@ -1360,7 +1360,7 @@ class ReactImageLightbox extends Component {
       onOCR,
       OCRLabel,
       sidePanel,
-      metadataLabe,
+      metadataLabel,
       onClickMetadata
     } = this.props;
     const {
@@ -1660,7 +1660,7 @@ class ReactImageLightbox extends Component {
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
-                    aria-label={metadataLabe}
+                    aria-label={metadataLabel}
                     className="ril-metadata ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__openMetadataButton"
                     onClick={onClickMetadata}
                   />
@@ -2006,7 +2006,7 @@ ReactImageLightbox.propTypes = {
   deleteImageLabel: PropTypes.string,
   rotateImageLabel: PropTypes.string,
   viewOriginalImageLabel: PropTypes.string,
-  metadataLabe: PropTypes.string,
+  metadataLabel: PropTypes.string,
   onOCR: PropTypes.func,
   OCRLabel: PropTypes.string,
 
@@ -2055,7 +2055,7 @@ ReactImageLightbox.defaultProps = {
   wrapperClassName: '',
   zoomInLabel: 'Zoom in',
   zoomOutLabel: 'Zoom out',
-  metadataLabe: 'Metadata',
+  metadataLabel: 'Metadata',
   imageLoadErrorMessage: 'This image failed to load',
   onRotateImage: null,
   rotateImageLabel: 'Rotate image',
