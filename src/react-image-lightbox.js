@@ -1496,9 +1496,9 @@ class ReactImageLightbox extends Component {
 
     const zoomMultiplier = this.getZoomMultiplier();
     // Next Image (displayed on the right)
-    addImage('nextSrc', 'ril-image-next ril__imageNext', {
-      x: boxSize.width,
-    });
+    // addImage('nextSrc', 'ril-image-next ril__imageNext', {
+    //   x: boxSize.width,
+    // });
     // Main Image
     addImage('mainSrc', 'ril-image-current', {
       x: -1 * offsetX,
@@ -1506,9 +1506,9 @@ class ReactImageLightbox extends Component {
       zoom: zoomMultiplier,
     });
     // Previous Image (displayed on the left)
-    addImage('prevSrc', 'ril-image-prev ril__imagePrev', {
-      x: -1 * boxSize.width,
-    });
+    // addImage('prevSrc', 'ril-image-prev ril__imagePrev', {
+    //   x: -1 * boxSize.width,
+    // });
 
     const reactModalStyle = Object.assign({}, {
       overlay: {
