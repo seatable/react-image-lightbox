@@ -138,11 +138,18 @@ class App extends Component {
     console.log(this.state.index, deg);
   }
 
+  setImageIndex(index) {
+    this.setState({ index });
+  }
+
   render() {
     let lightbox;
     if (this.state.isOpen) {
       lightbox = (
         <Lightbox
+          imageItems={images}
+          setImageIndex={index => this.setImageIndex(index)}
+          currentIndex={this.state.index}
           mainSrc={images[this.state.index]}
           nextSrc={images[(this.state.index + 1) % images.length]}
           prevSrc={
