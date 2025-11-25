@@ -1576,7 +1576,7 @@ class ReactImageLightbox extends Component {
           onKeyDown={this.handleKeyInput}
           onKeyUp={this.handleKeyInput}
         >
-          {imageItems && imageItems.length > 1 &&
+          {!this.isMobile && imageItems && imageItems.length > 1 &&
             <div className="ril-sidebar ril__sidebar">
               <SidebarThumbnails
               imageItems={imageItems}
