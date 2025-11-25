@@ -1,6 +1,9 @@
 import * as React from 'react';
 
 export interface ILightBoxProps {
+  imageItems?: any[];
+  currentIndex?: number;
+  setImageIndex?: (index: number) => void;
   mainSrc: string;
   nextSrc?: string;
   prevSrc?: string;
@@ -29,12 +32,14 @@ export interface ILightBoxProps {
   reactModalProps?: any;
   imagePadding?: number;
   clickOutsideToClose?: boolean;
+  onClickMetadata: boolean,
   enableZoom?: boolean;
   wrapperClassName?: string;
   nextLabel?: string;
   prevLabel?: string;
   zoomInLabel?: string;
   zoomOutLabel?: string;
+  metadataLabel?: string;
   closeLabel?: string;
   deleteImageLabel?: string;
   downloadImageLabel?: string;
