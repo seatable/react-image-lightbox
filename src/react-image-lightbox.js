@@ -1042,7 +1042,7 @@ class ReactImageLightbox extends Component {
       return;
     }
     event.preventDefault();
-  };
+  }
 
   handlePinchStart(pointerList) {
     if (!this.props.enableZoom) {
@@ -1579,10 +1579,10 @@ class ReactImageLightbox extends Component {
           {!this.isMobile && imageItems && imageItems.length > 1 &&
             <div className="ril-sidebar ril__sidebar">
               <SidebarThumbnails
-              imageItems={imageItems}
-              currentIndex={currentIndex}
-              setImageIndex={setImageIndex}
-            />
+                imageItems={imageItems}
+                currentIndex={currentIndex}
+                setImageIndex={setImageIndex}
+              />
             </div>
           }
           <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events

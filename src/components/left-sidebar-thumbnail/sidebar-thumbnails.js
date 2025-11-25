@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Tooltip from '../tooltip/tooltip';
 
-import './index.css'
+import './index.css';
 
 const SidebarThumbnails = (props) => {
   const { imageItems: images, currentIndex, setImageIndex } = props;
@@ -35,7 +35,7 @@ const SidebarThumbnails = (props) => {
       ref={listRef} 
       onWheel={e => {
         e.stopPropagation();
-    }}>
+      }}>
       {images.map((img, i) => {
         const thumbId = img.id ?  `ril-thumb-${img.id}`: `ril-thumb-${i}`;
         return (
@@ -49,7 +49,7 @@ const SidebarThumbnails = (props) => {
             <img src={img.thumbnail || img} alt="" />
             {isDidMount && (<Tooltip target={thumbId}>{img.name || img}</Tooltip>)}
           </div>
-        )
+        );
       })}
       
     </div>
