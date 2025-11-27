@@ -51,7 +51,7 @@
   width: 128px;
   opacity: 0.7;
   position: absolute;
-  top: 64px;
+  top: 48px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -133,10 +133,11 @@
   right: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .ril__caption {
-  height: 64px;
+  height: 56px;
   box-sizing: border-box;
   fill: #131313;
   bottom: 5px;
@@ -187,11 +188,10 @@
 
 .ril__toolbar {
   top: 0;
-  height: 64px;
+  height: 48px;
 }
 
 .ril__toolbarSide {
-  height: 64px;
   margin: 0;
 }
 
