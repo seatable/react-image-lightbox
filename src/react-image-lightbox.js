@@ -226,6 +226,9 @@ class ReactImageLightbox extends Component {
     });
 
     document.addEventListener('wheel', this.handleWheel, { passive: false });
+    // Capture key events at the top level
+    document.addEventListener('keydown', this.handleKeyInput, true);
+    document.addEventListener('keyup', this.handleKeyInput, true);
     this.loadAllImages();
   }
 
@@ -271,6 +274,8 @@ class ReactImageLightbox extends Component {
       this.windowContext.removeEventListener(type, this.listeners[type]);
     });
     document.removeEventListener('wheel', this.handleWheel, { passive: false });
+    document.removeEventListener('keydown', this.handleKeyInput, true);
+    document.removeEventListener('keyup', this.handleKeyInput, true);
     this.timeouts.forEach(tid => clearTimeout(tid));
   }
 
@@ -1207,10 +1212,26 @@ class ReactImageLightbox extends Component {
 
       // Load unloaded images
       if (props[type] && !this.isImageLoaded(props[type])) {
+
+        let imageSrc = props[type];
+
+        // Update newly-rotated images path and cache
+        if (!this.imageCache[imageSrc] && imageSrc.startsWith('thumbnail')) {
+          imageSrc = '/' + imageSrc;
+          const targetImageSrc = Object.keys(this.imageCache).find(src => 
+            imageSrc.split('?t=')[0] === src.split('?mtime=')[0]
+          )
+
+          if (targetImageSrc) {
+            this.imageCache[imageSrc] = this.imageCache[targetImageSrc];
+            delete this.imageCache[targetImageSrc];
+          }
+          
+        }
         this.loadImage(
           type,
-          props[type],
-          generateLoadDoneCallback(type, props[type])
+          imageSrc,
+          generateLoadDoneCallback(type, imageSrc)
         );
       }
     });
