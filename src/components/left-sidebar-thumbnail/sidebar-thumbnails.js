@@ -38,9 +38,6 @@ const SidebarThumbnails = (props) => {
     }}>
       {images.map((img, i) => {
         const thumbId = img.id ?  `ril-thumb-${img.id}`: `ril-thumb-${i}`;
-        if (img.thumbnail && !img.thumbnail.startsWith('/')) {
-          img.thumbnail = '/' + img.thumbnail;
-        }
         return (
           <div
             key={thumbId}

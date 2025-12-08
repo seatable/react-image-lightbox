@@ -1214,10 +1214,8 @@ class ReactImageLightbox extends Component {
       if (props[type] && !this.isImageLoaded(props[type])) {
 
         let imageSrc = props[type];
-
         // Update newly-rotated images path and cache
-        if (!this.imageCache[imageSrc] && imageSrc.startsWith('thumbnail')) {
-          imageSrc = '/' + imageSrc;
+        if (!this.imageCache[imageSrc]) {
           const targetImageSrc = Object.keys(this.imageCache).find(src => 
             imageSrc.split('?t=')[0] === src.split('?mtime=')[0]
           )
