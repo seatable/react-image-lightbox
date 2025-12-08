@@ -1213,7 +1213,7 @@ class ReactImageLightbox extends Component {
       // Load unloaded images
       if (props[type] && !this.isImageLoaded(props[type])) {
 
-        let imageSrc = props[type];
+        const imageSrc = props[type];
         // Update newly-rotated images path and cache
         if (!this.imageCache[imageSrc]) {
           const targetImageSrc = Object.keys(this.imageCache).find(src => 
@@ -1222,7 +1222,6 @@ class ReactImageLightbox extends Component {
 
           if (targetImageSrc) {
             this.imageCache[imageSrc] = this.imageCache[targetImageSrc];
-            delete this.imageCache[targetImageSrc];
           }
           
         }
