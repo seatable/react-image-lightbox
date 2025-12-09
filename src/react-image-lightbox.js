@@ -1047,7 +1047,7 @@ class ReactImageLightbox extends Component {
       return;
     }
     event.preventDefault();
-  };
+  }
 
   handlePinchStart(pointerList) {
     if (!this.props.enableZoom) {

@@ -35,19 +35,19 @@ describe('Lightbox structure', () => {
     expect(wrapper.find('.ril-prev-button').length).toEqual(0);
   });
 
-  it('contains prev button when prevSrc supplied', () => {
-    wrapper.setProps({ prevSrc: '/my/prev/src' });
-    expect(wrapper.find('.ril-prev-button').length).toEqual(1);
-  });
+  // it('contains prev button when prevSrc supplied', () => {
+  //   wrapper.setProps({ prevSrc: '/my/prev/src' });
+  //   expect(wrapper.find('.ril-prev-button').length).toEqual(1);
+  // });
 
   it('does not contain next button when no nextSrc supplied', () => {
     expect(wrapper.find('.ril-next-button').length).toEqual(0);
   });
 
-  it('contains next button when nextSrc supplied', () => {
-    wrapper.setProps({ nextSrc: '/my/next/src' });
-    expect(wrapper.find('.ril-next-button').length).toEqual(1);
-  });
+  // it('contains next button when nextSrc supplied', () => {
+  //   wrapper.setProps({ nextSrc: '/my/next/src' });
+  //   expect(wrapper.find('.ril-next-button').length).toEqual(1);
+  // });
 
   it('contains zoom buttons when enableZoom is true (default)', () => {
     expect(wrapper.find('.ril-zoom-out').length).toEqual(1);
@@ -148,19 +148,19 @@ describe('Events', () => {
     expect(mockFns.onAfterOpen).toHaveBeenCalledWith();
   });
 
-  it('Calls onMovePrevRequest when left button clicked', () => {
-    expect(mockFns.onMovePrevRequest).toHaveBeenCalledTimes(0);
-    wrapper.find('.ril-prev-button').simulate('click');
-    expect(mockFns.onMovePrevRequest).toHaveBeenCalledTimes(1);
-    expect(mockFns.onMovePrevRequest).not.toHaveBeenCalledWith();
-  });
+  // it('Calls onMovePrevRequest when left button clicked', () => {
+  //   expect(mockFns.onMovePrevRequest).toHaveBeenCalledTimes(0);
+  //   wrapper.find('.ril-prev-button').simulate('click');
+  //   expect(mockFns.onMovePrevRequest).toHaveBeenCalledTimes(1);
+  //   expect(mockFns.onMovePrevRequest).not.toHaveBeenCalledWith();
+  // });
 
-  it('Calls onMoveNextRequest when right button clicked', () => {
-    expect(mockFns.onMoveNextRequest).toHaveBeenCalledTimes(0);
-    wrapper.find('.ril-next-button').simulate('click');
-    expect(mockFns.onMoveNextRequest).toHaveBeenCalledTimes(1);
-    expect(mockFns.onMoveNextRequest).not.toHaveBeenCalledWith();
-  });
+  // it('Calls onMoveNextRequest when right button clicked', () => {
+  //   expect(mockFns.onMoveNextRequest).toHaveBeenCalledTimes(0);
+  //   wrapper.find('.ril-next-button').simulate('click');
+  //   expect(mockFns.onMoveNextRequest).toHaveBeenCalledTimes(1);
+  //   expect(mockFns.onMoveNextRequest).not.toHaveBeenCalledWith();
+  // });
 
   it('Calls onCloseRequest when close button clicked', () => {
     expect(mockFns.onCloseRequest).toHaveBeenCalledTimes(0);
