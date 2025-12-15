@@ -27,6 +27,7 @@ import {
 } from './constant';
 import './style.css';
 import SidebarThumbnails from './components/left-sidebar-thumbnail/sidebar-thumbnails';
+import Tooltip from './components/tooltip/tooltip';
 
 class ReactImageLightbox extends Component {
   static isTargetMatchImage(target) {
@@ -109,6 +110,7 @@ class ReactImageLightbox extends Component {
 
       // rotate image degree
       rotateDeg: 0,
+      isDidMount: false,
     };
 
     // Refs
@@ -141,6 +143,9 @@ class ReactImageLightbox extends Component {
     this.requestMoveDown = this.requestMoveDown.bind(this);
     this.rotateImage = this.rotateImage.bind(this);
     this.isMobile = isMobile;
+
+    // Track whether a drag occurred to suppress click after move
+    this.hasMoved = false;
   }
 
   // eslint-disable-next-line camelcase
@@ -230,6 +235,8 @@ class ReactImageLightbox extends Component {
     document.addEventListener('keydown', this.handleKeyInput, true);
     document.addEventListener('keyup', this.handleKeyInput, true);
     this.loadAllImages();
+
+    this.setState({ isDidMount: true });
   }
 
   // eslint-disable-next-line camelcase
@@ -376,6 +383,11 @@ class ReactImageLightbox extends Component {
       maxX = (boxSize.width - zoomMultiplier * currentImageInfo.width) / 2;
     } else {
       maxX = (zoomMultiplier * currentImageInfo.width - boxSize.width) / 2;
+    }
+
+    // maxX is 0 if the image shown width is less than box width
+    if (zoomMultiplier * currentImageInfo.targetWidth < boxSize.width) {
+      maxX = 0
     }
 
     let maxY = 0;
@@ -599,6 +611,7 @@ class ReactImageLightbox extends Component {
 
       // Left arrow key moves to previous image
       case KEYS.LEFT_ARROW:
+      case KEYS.UP_ARROW:
         if (!this.props.prevSrc) {
           return;
         }
@@ -610,6 +623,7 @@ class ReactImageLightbox extends Component {
 
       // Right arrow key moves to next image
       case KEYS.RIGHT_ARROW:
+      case KEYS.DOWN_ARROW:
         if (!this.props.nextSrc) {
           return;
         }
@@ -656,6 +670,17 @@ class ReactImageLightbox extends Component {
   }
 
   handleImageMouseWheel(event) {
+    // When only wheel runs, image moves vertically
+    const moveWithModifierType = event.nativeEvent.type;
+    if (moveWithModifierType === 'wheel' && !event.nativeEvent.ctrlKey && !event.nativeEvent.metaKey) {
+      const { minY, maxY } = this.getMaxOffsets();
+      const nextY = Math.max(minY, Math.min(maxY, this.state.offsetY + event.deltaY));
+      if (nextY !== this.state.offsetY) {
+        this.setState({ offsetY: nextY });
+      }
+      return;
+    }
+
     // when gesture move up/down/left/right, event.deltaY is integer, move image
     if (parseInt(event.deltaY) === parseFloat(event.deltaY)) {
       if (Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
@@ -666,6 +691,11 @@ class ReactImageLightbox extends Component {
         let newOffsetX = this.state.offsetX + event.deltaX;
         newOffsetX = newOffsetX < 0 ? 0 : newOffsetX;
         this.setState({ offsetX: newOffsetX });
+        const { maxX } = this.getMaxOffsets();
+        // No horizontal movement if the image shown width is less than box width
+        if (maxX === 0) {
+          this.setState({ offsetX: 0 });
+        }
       }
       return;
     }
@@ -710,6 +740,19 @@ class ReactImageLightbox extends Component {
   handleImageClick(event) {
     event.stopPropagation();
     event.nativeEvent.stopImmediatePropagation();
+    if (this.hasMoved) {
+      // Ignore click if it followed a drag gesture
+      this.hasMoved = false;
+      return;
+    }
+    const imageBaseSize = this.getBestImageForType('mainSrc');
+    // Click the image to show as zoom size of 2x
+    if (this.state.zoomLevel >= 1) {
+      this.changeZoom(MIN_ZOOM_LEVEL, event.clientX, event.clientY);
+    } else {
+      this.changeZoom(2, event.clientX, event.clientY);
+    }
+    
   }
 
   shouldHandleEvent(source) {
@@ -930,6 +973,7 @@ class ReactImageLightbox extends Component {
     if (!this.props.enableZoom) {
       return;
     }
+    this.hasMoved = false;
     this.currentAction = ACTION_MOVE;
     this.moveStartX = clientX;
     this.moveStartY = clientY;
@@ -944,13 +988,23 @@ class ReactImageLightbox extends Component {
   handleMove({ x: clientX, y: clientY }) {
     const newOffsetX = this.moveStartX - clientX + this.moveStartOffsetX;
     const newOffsetY = this.moveStartY - clientY + this.moveStartOffsetY;
+    const maxOffsets = this.getMaxOffsets();
+    const limitedOffsetX = Math.max(
+      maxOffsets.minX,
+      Math.min(maxOffsets.maxX, newOffsetX)
+    );
+    const limitedOffsetY = Math.max(
+      maxOffsets.minY,
+      Math.min(maxOffsets.maxY, newOffsetY)
+    );
     if (
-      this.state.offsetX !== newOffsetX ||
-      this.state.offsetY !== newOffsetY
+      this.state.offsetX !== limitedOffsetX ||
+      this.state.offsetY !== limitedOffsetY
     ) {
+      this.hasMoved = true;
       this.setState({
-        offsetX: newOffsetX,
-        offsetY: newOffsetY,
+        offsetX: limitedOffsetX,
+        offsetY: limitedOffsetY,
       });
     }
   }
@@ -1379,7 +1433,14 @@ class ReactImageLightbox extends Component {
       OCRLabel,
       sidePanel,
       metadataLabel,
-      onClickMetadata
+      onClickMetadata,
+      zoomInTip,
+      zoomOutTip,
+      rotateTip,
+      deleteTip,
+      downloadImageTip,
+      openMetadataTip,
+      closeMetadataTip
     } = this.props;
     const {
       zoomLevel,
@@ -1388,6 +1449,7 @@ class ReactImageLightbox extends Component {
       isClosing,
       loadErrorStatus,
       rotateDeg,
+      isDidMount
     } = this.state;
 
     const boxSize = this.getLightboxRect();
@@ -1612,27 +1674,6 @@ class ReactImageLightbox extends Component {
             {images}
           </div>
 
-          {/* {prevSrc && !this.isMobile && (
-            <button // Move to previous image button
-              type="button"
-              className="ril-prev-button ril__navButtons ril__navButtonPrev"
-              key="prev"
-              aria-label={this.props.prevLabel}
-              onClick={!isAnimating ? this.requestMovePrev : undefined} // Ignore clicks during animation
-            />
-          )} */}
-
-          {/* {nextSrc && !this.isMobile && (
-            <button // Move to next image button
-              type="button"
-              className="ril-next-button ril__navButtons ril__navButtonNext"
-              key="next"
-              aria-label={this.props.nextLabel}
-              style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
-              onClick={!isAnimating ? this.requestMoveNext : undefined} // Ignore clicks during animation
-            />
-          )} */}
-
           {sidePanel && sidePanel.render()}
 
           <div // Lightbox toolbar
@@ -1674,17 +1715,30 @@ class ReactImageLightbox extends Component {
                   />
                 </li>
               }
-              {sidePanel && !this.isMobile &&
+              {sidePanel && !this.isMobile && sidePanel.width === 0  &&
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
                     type="button"
+                    id='openMetadataButton'
                     aria-label={metadataLabel}
                     className="ril-metadata ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__openMetadataButton"
                     onClick={onClickMetadata}
                   />
+                  {isDidMount && (<Tooltip target='openMetadataButton' placement='bottom'>{openMetadataTip}</Tooltip>)}
                 </li>
               }
-
+              {sidePanel && !this.isMobile && sidePanel.width !== 0  &&
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    id='closeMetadataButton'
+                    aria-label={metadataLabel}
+                    className="ril-metadata ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeMetadataButton"
+                    onClick={onClickMetadata}
+                  />
+                  {isDidMount && (<Tooltip target='closeMetadataButton' placement='bottom'>{closeMetadataTip}</Tooltip>)}
+                </li>
+              }
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
                   type="button"
@@ -1709,6 +1763,7 @@ class ReactImageLightbox extends Component {
                 <button // Lightbox zoom in button
                   type="button"
                   key="zoom-in"
+                  id='zoomInButton'
                   aria-label={zoomInLabel}
                   className={[
                     'ril-zoom-in',
@@ -1727,6 +1782,7 @@ class ReactImageLightbox extends Component {
                       : undefined
                   }
                 />
+                {isDidMount && (<Tooltip target='zoomInButton' placement='top'>{zoomInTip}</Tooltip>)}
               </li>
             )}
 
@@ -1734,6 +1790,7 @@ class ReactImageLightbox extends Component {
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox zoom out button
                   type="button"
+                  id='zoomOutButton'
                   key="zoom-out"
                   aria-label={zoomOutLabel}
                   className={[
@@ -1753,12 +1810,14 @@ class ReactImageLightbox extends Component {
                       : undefined
                   }
                 />
+                {isDidMount && (<Tooltip target='zoomOutButton' placement='top'>{zoomOutTip}</Tooltip>)}
               </li>
             )}
             {onRotateImage && (
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox rotate button
                   type="button"
+                  id='rotateButton'
                   aria-label={rotateImageLabel}
                   className={[
                     'ril-rotate',
@@ -1766,9 +1825,9 @@ class ReactImageLightbox extends Component {
                     'ril__builtinButton',
                     'ril__rotateButton_2',
                   ].join(' ')}
-                  style={{marginBottom: 4}}
                   onClick={this.rotateImage}
                 />
+                {isDidMount && (<Tooltip target='rotateButton' placement='top'>{rotateTip}</Tooltip>)}
               </li>
             )}
             {!this.isMobile && (onClickDownload || onClickDelete) && (
@@ -1778,20 +1837,24 @@ class ReactImageLightbox extends Component {
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button
                   type="button"
+                  id='downloadButton'
                   aria-label={downloadImageLabel}
                   className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downloadButton"
                   onClick={onClickDownload}
                 />
+                {isDidMount && (<Tooltip target='downloadButton' placement='top'>{downloadImageTip}</Tooltip>)}
               </li>
             )}
             {onClickDelete && !this.isMobile && (
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button
                   type="button"
+                  id='deleteButton'
                   aria-label={deleteImageLabel}
                   className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__deleteButton"
                   onClick={onClickDelete}
                 />
+                {isDidMount && (<Tooltip target='deleteButton' placement='top'>{deleteTip}</Tooltip>)}
               </li>
             )}
             {!this.isMobile && (onViewOriginal || onOCR) && (
@@ -1801,10 +1864,12 @@ class ReactImageLightbox extends Component {
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button
                   type="button"
+                  id='OCRButton'
                   aria-label={OCRLabel}
                   className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__OCR"
                   onClick={onOCR}
                 />
+                {isDidMount && (<Tooltip target='OCRButton' placement='top'>{OCRLabel}</Tooltip>)}
               </li>
             )}
             {onViewOriginal && (
@@ -2030,6 +2095,14 @@ ReactImageLightbox.propTypes = {
 
   imageLoadErrorMessage: PropTypes.node,
   sidePanel: PropTypes.object,
+  // Tooltips
+  zoomInTip: PropTypes.string,
+  zoomOutTip: PropTypes.string,
+  rotateTip: PropTypes.string,
+  deleteTip: PropTypes.string,
+  downloadImageTip: PropTypes.string,
+  openMetadataTip: PropTypes.string,
+  closeMetadataTip: PropTypes.string
 };
 
 ReactImageLightbox.defaultProps = {
@@ -2082,6 +2155,13 @@ ReactImageLightbox.defaultProps = {
   onOCR: null,
   OCRLabel: 'OCR',
   sidePanel: null,
+  zoomInTip: null,
+  zoomOutTip: null,
+  rotateTip: null,
+  deleteTip: null,
+  downloadImageTip: null,
+  openMetadataTip: null,
+  closeMetadataTip: null,
 };
 
 export default ReactImageLightbox;
