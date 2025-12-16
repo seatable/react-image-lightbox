@@ -199,6 +199,10 @@
   left: 128px;
 }
 
+.ril__outer:not(:has(.ril__sidebar)) .ril__toolbar {
+  left: 0;
+}
+
 .ril__toolbarSide {
   margin: 0;
 }
