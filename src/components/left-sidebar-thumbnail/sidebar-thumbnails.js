@@ -10,7 +10,7 @@ const OVER_SCAN = 4;  // Number of items to render before and after the viewport
 
 const SidebarThumbnails = (props) => {
   const { imageItems: images, currentIndex, setImageIndex } = props;
-  const [scrollTop, setScrollTop] = useState(0);
+  const [scrollTop, setScrollTop] = useState(currentIndex * ITEM_HEIGHT);
   const [isDidMount, setDidMount] = useState(false);
   const listRef = useRef(null);
   
@@ -104,7 +104,7 @@ const SidebarThumbnails = (props) => {
         <div className="thumbnail-sidebar-container" style={{ transform: `translateY(${start * ITEM_HEIGHT}px)` }}>
           {visibleImages.map((img, i) => {
             const realIndex = start + i;
-            const thumbId = img.id ?  `ril-thumb-${img.id}`: `ril-thumb-${realIndex}`;
+            const thumbId = `ril-thumb-${realIndex}`;
             return (
               <div
                 key={thumbId}
