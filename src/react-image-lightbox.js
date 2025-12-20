@@ -632,25 +632,6 @@ class ReactImageLightbox extends Component {
         this.keyPressed = true;
         this.requestMoveNext(event);
         break;
-
-      // Up arrow key moves to upper row
-      case KEYS.UP_ARROW: {
-        if (this.props.onClickMoveUp) {
-          event.preventDefault();
-          this.keyPressed = true;
-          this.requestMoveUp(event);
-        }
-        break;
-      }
-      // Down arrow key moves to down row
-      case KEYS.DOWN_ARROW: {
-        if (this.props.onClickMoveUp) {
-          event.preventDefault();
-          this.keyPressed = true;
-          this.requestMoveDown(event);
-        }
-        break;
-      }
       default:
     }
   }
