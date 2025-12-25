@@ -112,6 +112,8 @@ const SidebarThumbnails = (props) => {
                 id={thumbId}
                 className={`ril-thumb ${realIndex === currentIndex ? 'thumb-active' : ''}`}
                 onClick={() => setImageIndex && setImageIndex(realIndex)}
+                role="button"
+                aria-label={img.name ? `Thumbnail for ${img.name}` : `Thumbnail ${realIndex + 1}`}
                 tabIndex="0"
                 onKeyDown={Utils.onKeyDown}
               >
