@@ -173,18 +173,9 @@
   border-radius: 8px;
 }
 
-.ril__caption .ril__toolbarItem:hover {
-  background: #666;
-}
-
 .ril__caption .ril__toolbarItem.view-original-button {
   width: 178px;
   margin-left: 6px;
-}
-
-.ril__caption .ril__toolbarItem.view-original-button :hover {
-  background-color: #666;
-  opacity: 1;
 }
 
 .ril__captionContent {
@@ -229,10 +220,6 @@
   width: 32px;
   height: 32px !important;
   border-radius: 8px;
-}
-
-.ril__toolbarRightSide .ril__toolbarItem:hover {
-  background-color: #666;
 }
 
 .ril__toolbarItem {
@@ -291,7 +278,9 @@
   opacity: 1;
 }
 
-.ril__builtinButton:hover {
+.ril__builtinButton:hover,
+.ril__builtinButton:focus {
+  background-color: #666;
   opacity: 1;
 }
 
