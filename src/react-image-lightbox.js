@@ -232,8 +232,8 @@ class ReactImageLightbox extends Component {
 
     document.addEventListener('wheel', this.handleWheel, { passive: false });
     // Capture key events at the top level
-    document.addEventListener('keydown', this.handleKeyInput, true);
-    document.addEventListener('keyup', this.handleKeyInput, true);
+    document.addEventListener('keydown', this.handleKeyInput);
+    document.addEventListener('keyup', this.handleKeyInput);
     this.loadAllImages();
 
     this.setState({ isDidMount: true });
@@ -733,7 +733,7 @@ class ReactImageLightbox extends Component {
     } else {
       this.changeZoom(2, event.clientX, event.clientY);
     }
-    
+
   }
 
   shouldHandleEvent(source) {
@@ -1251,14 +1251,14 @@ class ReactImageLightbox extends Component {
         const imageSrc = props[type];
         // Update newly-rotated images path and cache
         if (!this.imageCache[imageSrc]) {
-          const targetImageSrc = Object.keys(this.imageCache).find(src => 
+          const targetImageSrc = Object.keys(this.imageCache).find(src =>
             imageSrc.split('?t=')[0] === src.split('?mtime=')[0]
           )
 
           if (targetImageSrc) {
             this.imageCache[imageSrc] = this.imageCache[targetImageSrc];
           }
-          
+
         }
         this.loadImage(
           type,

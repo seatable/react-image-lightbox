@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Tooltip from '../tooltip/tooltip';
 import { clamp } from '../../utils/helpers';
+import { Utils } from '../../utils/utils';
 
 import './index.css';
 
@@ -13,7 +14,7 @@ const SidebarThumbnails = (props) => {
   const [scrollTop, setScrollTop] = useState(currentIndex * ITEM_HEIGHT);
   const [isDidMount, setDidMount] = useState(false);
   const listRef = useRef(null);
-  
+
   // Total height of the list and 16 is gap of images; last item no need gap
   const totalHeight = useMemo(() => (
     images.length > 0 ? images.length * ITEM_HEIGHT - 16 : 0
@@ -95,8 +96,8 @@ const SidebarThumbnails = (props) => {
   }, []);
 
   return (
-    <div className="thumbnail-sidebar" 
-      ref={listRef} 
+    <div className="thumbnail-sidebar"
+      ref={listRef}
       onWheel={e => {
         e.stopPropagation();
     }}>
@@ -111,6 +112,10 @@ const SidebarThumbnails = (props) => {
                 id={thumbId}
                 className={`ril-thumb ${realIndex === currentIndex ? 'thumb-active' : ''}`}
                 onClick={() => setImageIndex && setImageIndex(realIndex)}
+                role="button"
+                aria-label={img.name ? `Thumbnail for ${img.name}` : `Thumbnail ${realIndex + 1}`}
+                tabIndex="0"
+                onKeyDown={Utils.onKeyDown}
               >
                 <img src={img.thumbnail || img} alt="" />
                 {isDidMount && (<Tooltip target={thumbId}>{img.name || img}</Tooltip>)}

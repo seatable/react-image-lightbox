@@ -32,7 +32,8 @@
   opacity: 0.5;
 }
 
-.ril-thumb:hover {
+.ril-thumb:hover,
+.ril-thumb:focus {
   opacity: 0.95;
   transform: translateY(-1px);
 }
