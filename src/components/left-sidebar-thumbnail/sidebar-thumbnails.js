@@ -100,7 +100,7 @@ const SidebarThumbnails = (props) => {
       ref={listRef}
       onWheel={e => {
         e.stopPropagation();
-    }}>
+      }}>
       <div style={{ height: totalHeight, position: 'relative' }}>
         <div className="thumbnail-sidebar-container" style={{ transform: `translateY(${start * ITEM_HEIGHT}px)` }}>
           {visibleImages.map((img, i) => {
@@ -120,7 +120,7 @@ const SidebarThumbnails = (props) => {
                 <img src={img.thumbnail || img} alt="" />
                 {isDidMount && (<Tooltip target={thumbId}>{img.name || img}</Tooltip>)}
               </div>
-            )
+            );
           })}
         </div>
       </div>
