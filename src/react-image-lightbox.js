@@ -387,7 +387,7 @@ class ReactImageLightbox extends Component {
 
     // maxX is 0 if the image shown width is less than box width
     if (zoomMultiplier * currentImageInfo.targetWidth < boxSize.width) {
-      maxX = 0
+      maxX = 0;
     }
 
     let maxY = 0;
@@ -1253,7 +1253,7 @@ class ReactImageLightbox extends Component {
         if (!this.imageCache[imageSrc]) {
           const targetImageSrc = Object.keys(this.imageCache).find(src =>
             imageSrc.split('?t=')[0] === src.split('?mtime=')[0]
-          )
+          );
 
           if (targetImageSrc) {
             this.imageCache[imageSrc] = this.imageCache[targetImageSrc];
@@ -1421,7 +1421,8 @@ class ReactImageLightbox extends Component {
       deleteTip,
       downloadImageTip,
       openMetadataTip,
-      closeMetadataTip
+      closeMetadataTip,
+      closeTip
     } = this.props;
     const {
       zoomLevel,
@@ -1640,10 +1641,10 @@ class ReactImageLightbox extends Component {
           {!this.isMobile && imageItems && imageItems.length > 1 &&
             <div className="ril-sidebar ril__sidebar">
               <SidebarThumbnails
-              imageItems={imageItems}
-              currentIndex={currentIndex}
-              setImageIndex={setImageIndex}
-            />
+                imageItems={imageItems}
+                currentIndex={currentIndex}
+                setImageIndex={setImageIndex}
+              />
             </div>
           }
           <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
@@ -1722,12 +1723,14 @@ class ReactImageLightbox extends Component {
               }
               <li className="ril-toolbar__item ril__toolbarItem">
                 <button // Lightbox close button
+                  id="close-btn"
                   type="button"
                   key="close"
                   aria-label={closeLabel}
                   className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!isAnimating ? this.requestClose : undefined} // Ignore clicks during animation
                 />
+                {isDidMount && (<Tooltip target='close-btn' placement='bottom'>{closeTip}</Tooltip>)}
               </li>
             </ul>
           </div>
@@ -2083,7 +2086,8 @@ ReactImageLightbox.propTypes = {
   deleteTip: PropTypes.string,
   downloadImageTip: PropTypes.string,
   openMetadataTip: PropTypes.string,
-  closeMetadataTip: PropTypes.string
+  closeMetadataTip: PropTypes.string,
+  closeTip: PropTypes.string,
 };
 
 ReactImageLightbox.defaultProps = {
@@ -2143,6 +2147,7 @@ ReactImageLightbox.defaultProps = {
   downloadImageTip: null,
   openMetadataTip: null,
   closeMetadataTip: null,
+  closeTip: null,
 };
 
 export default ReactImageLightbox;

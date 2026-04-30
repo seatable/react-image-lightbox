@@ -21,6 +21,7 @@ const Tooltip = ({ target, children, className, modifiers = [], placement = 'rig
     target,
     fade,
     delay,
+    hideArrow: true,
   };
 
   return (
@@ -35,7 +36,9 @@ Tooltip.propTypes = {
   className: PropTypes.string,
   placement: PropTypes.string,
   children: PropTypes.any,
-  fade: PropTypes.bool
+  fade: PropTypes.bool,
+  modifiers: PropTypes.array,
+  delay: PropTypes.object || PropTypes.number
 };
 
 export default Tooltip;

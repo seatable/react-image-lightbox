@@ -9,27 +9,11 @@
   background-color: white;
   color: black;
   font-weight: 400;
-  padding: 6px 12px;
-  font-size: 12px;
+  padding: 4px 8px;
+  font-size: .875rem;
   border-radius: 4px;
-}
-
-.seafile-image-tooltip.bs-tooltip-auto[data-popper-placement^="bottom"] .arrow::before {
-  border-bottom-color: white;
 }
 
 .seafile-image-tooltip.bs-tooltip-auto[data-popper-placement^="top"] {
   margin-bottom: -2px;
-}
-
-.seafile-image-tooltip.bs-tooltip-auto[data-popper-placement^="top"] .arrow::before {
-  border-top-color: white;
-}
-
-.seafile-image-tooltip.bs-tooltip-auto[data-popper-placement^="right"] .arrow::before {
-  border-right-color: white;
-}
-
-.seafile-image-tooltip.bs-tooltip-auto[data-popper-placement^="left"] .arrow::before {
-  border-left-color: white;
 }
