@@ -10,13 +10,15 @@ import image1 from './images/1.jpg';
 import image2 from './images/2.jpg';
 import image3 from './images/3.jpg';
 import image4 from './images/4.jpg';
+import image5 from './images/5.png';
 import image1Thumb from './images/1_thumb.jpg';
 import image2Thumb from './images/2_thumb.jpg';
 import image3Thumb from './images/3_thumb.jpg';
 import image4Thumb from './images/4_thumb.jpg';
+import image5Thumb from './images/5.png';
 
-const images = [image1, image2, image3, image4];
-const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb];
+const images = [image1, image2, image3, image4, image5];
+const thumbs = [image1Thumb, image2Thumb, image3Thumb, image4Thumb, image5Thumb];
 
 const titles = [
   <span>
