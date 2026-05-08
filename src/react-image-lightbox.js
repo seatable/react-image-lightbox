@@ -64,11 +64,11 @@ class ReactImageLightbox extends Component {
   // Request to transition to the previous image
   static getTransform({ x = 0, y = 0, zoom = 1, width, targetWidth }) {
     let nextX = x;
-    const windowWidth = getWindowWidth();
+    const windowWidth = getWindowWidth() - 128;
     if (width > windowWidth) {
       nextX += (windowWidth - width) / 2;
     }
-    const scaleFactor = zoom * (targetWidth / width);
+    const scaleFactor = zoom * (targetWidth / width) * 0.95;
 
     return {
       transform: `translate3d(${nextX}px,${y}px,0) scale3d(${scaleFactor},${scaleFactor},1)`,
