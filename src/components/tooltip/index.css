@@ -1,6 +1,6 @@
 .seafile-image-tooltip {
   pointer-events: none;
-  z-index: 1070;
+  z-index: 2000;
 }
 
 .seafile-image-tooltip .tooltip-inner {
