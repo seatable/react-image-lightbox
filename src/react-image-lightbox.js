@@ -62,9 +62,12 @@ class ReactImageLightbox extends Component {
   }
 
   // Request to transition to the previous image
-  static getTransform({ x = 0, y = 0, zoom = 1, width, targetWidth }) {
+  static getTransform({isShowSideNav, x = 0, y = 0, zoom = 1, width, targetWidth }) {
     let nextX = x;
-    const windowWidth = getWindowWidth() - 128;
+    let windowWidth = getWindowWidth();
+    if (isShowSideNav) {
+      windowWidth = windowWidth - 128;
+    }
     if (width > windowWidth) {
       nextX += (windowWidth - width) / 2;
     }
@@ -1466,6 +1469,7 @@ class ReactImageLightbox extends Component {
         ...ReactImageLightbox.getTransform({
           ...transforms,
           ...bestImageInfo,
+          isShowSideNav: imageItems.length > 1,
         }),
       };
 
