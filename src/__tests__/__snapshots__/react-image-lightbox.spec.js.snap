@@ -28,6 +28,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   mainSrcThumbnail={null}
   metadataLabel="Metadata"
   nextLabel="Next image"
+  nextLineMetadaTip={null}
   nextSrc={null}
   nextSrcThumbnail={null}
   onAfterOpen={[Function]}
@@ -45,6 +46,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onRotateImage={null}
   onViewOriginal={null}
   openMetadataTip={null}
+  preLineMetadaTip={null}
   prevLabel="Previous image"
   prevSrc={null}
   prevSrcThumbnail={null}
@@ -606,6 +608,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -614,6 +617,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -846,6 +850,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -854,6 +859,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -1075,6 +1081,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                         placement="bottom"
                         popperClassName="seafile-image-tooltip"
                         target="close-btn"
+                        transition={
+                          Object {
+                            "timeout": 0,
+                          }
+                        }
                       >
                         <Tooltip
                           delay={0}
@@ -1202,6 +1213,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1210,6 +1222,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1442,6 +1455,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1450,6 +1464,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1672,6 +1687,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                           popperClassName="seafile-image-tooltip"
                           target="close-btn"
                           toggle={[Function]}
+                          transition={
+                            Object {
+                              "timeout": 0,
+                            }
+                          }
                         >
                           <TooltipPopoverWrapper
                             arrowClassName="tooltip-arrow"
@@ -1802,6 +1822,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                      id="preLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -1810,6 +1831,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                      id="nextLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2042,6 +2064,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                      id="preLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2050,6 +2073,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                      id="nextLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2273,6 +2297,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                             popperClassName="tooltip show seafile-image-tooltip"
                             target="close-btn"
                             toggle={[Function]}
+                            transition={
+                              Object {
+                                "timeout": 0,
+                              }
+                            }
                             trigger="hover focus"
                           />
                         </Tooltip>
@@ -2426,6 +2455,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2434,6 +2464,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2666,6 +2697,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2674,6 +2706,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2895,6 +2928,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       placement="top"
                       popperClassName="seafile-image-tooltip"
                       target="zoomInButton"
+                      transition={
+                        Object {
+                          "timeout": 0,
+                        }
+                      }
                     >
                       <Tooltip
                         delay={0}
@@ -3022,6 +3060,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3030,6 +3069,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3262,6 +3302,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3270,6 +3311,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3492,6 +3534,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                         popperClassName="seafile-image-tooltip"
                         target="zoomInButton"
                         toggle={[Function]}
+                        transition={
+                          Object {
+                            "timeout": 0,
+                          }
+                        }
                       >
                         <TooltipPopoverWrapper
                           arrowClassName="tooltip-arrow"
@@ -3622,6 +3669,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3630,6 +3678,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3862,6 +3911,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3870,6 +3920,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -4093,6 +4144,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                           popperClassName="tooltip show seafile-image-tooltip"
                           target="zoomInButton"
                           toggle={[Function]}
+                          transition={
+                            Object {
+                              "timeout": 0,
+                            }
+                          }
                           trigger="hover focus"
                         />
                       </Tooltip>
@@ -4239,6 +4295,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4247,6 +4304,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4479,6 +4537,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4487,6 +4546,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4708,6 +4768,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                       placement="top"
                       popperClassName="seafile-image-tooltip"
                       target="zoomOutButton"
+                      transition={
+                        Object {
+                          "timeout": 0,
+                        }
+                      }
                     >
                       <Tooltip
                         delay={0}
@@ -4835,6 +4900,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -4843,6 +4909,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5075,6 +5142,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5083,6 +5151,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5305,6 +5374,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                         popperClassName="seafile-image-tooltip"
                         target="zoomOutButton"
                         toggle={[Function]}
+                        transition={
+                          Object {
+                            "timeout": 0,
+                          }
+                        }
                       >
                         <TooltipPopoverWrapper
                           arrowClassName="tooltip-arrow"
@@ -5435,6 +5509,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5443,6 +5518,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5675,6 +5751,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5683,6 +5760,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5906,6 +5984,11 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                           popperClassName="tooltip show seafile-image-tooltip"
                           target="zoomOutButton"
                           toggle={[Function]}
+                          transition={
+                            Object {
+                              "timeout": 0,
+                            }
+                          }
                           trigger="hover focus"
                         />
                       </Tooltip>

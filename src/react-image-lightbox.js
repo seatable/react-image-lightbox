@@ -1424,6 +1424,8 @@ class ReactImageLightbox extends Component {
       deleteTip,
       downloadImageTip,
       openMetadataTip,
+      preLineMetadaTip,
+      nextLineMetadaTip,
       closeMetadataTip,
       closeTip
     } = this.props;
@@ -1689,7 +1691,9 @@ class ReactImageLightbox extends Component {
                     type="button"
                     className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
                     onClick={!isAnimating ? this.requestMoveUp : undefined}
+                    id='preLineMetadaButton'
                   />
+                  {isDidMount && (<Tooltip target='preLineMetadaButton' placement='bottom'>{preLineMetadaTip}</Tooltip>)}
                 </li>
               }
               {onClickMoveDown && !this.isMobile &&
@@ -1698,7 +1702,9 @@ class ReactImageLightbox extends Component {
                     type="button"
                     className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
                     onClick={!isAnimating ? this.requestMoveDown : undefined}
+                    id='nextLineMetadaButton'
                   />
+                  {isDidMount && (<Tooltip target='nextLineMetadaButton' placement='bottom'>{nextLineMetadaTip}</Tooltip>)}
                 </li>
               }
               {sidePanel && !this.isMobile && sidePanel.width === 0  &&
@@ -2090,6 +2096,8 @@ ReactImageLightbox.propTypes = {
   deleteTip: PropTypes.string,
   downloadImageTip: PropTypes.string,
   openMetadataTip: PropTypes.string,
+  preLineMetadaTip: PropTypes.string,
+  nextLineMetadaTip: PropTypes.string,
   closeMetadataTip: PropTypes.string,
   closeTip: PropTypes.string,
 };
@@ -2150,6 +2158,8 @@ ReactImageLightbox.defaultProps = {
   deleteTip: null,
   downloadImageTip: null,
   openMetadataTip: null,
+  preLineMetadaTip: null,
+  nextLineMetadaTip: null,
   closeMetadataTip: null,
   closeTip: null,
 };
