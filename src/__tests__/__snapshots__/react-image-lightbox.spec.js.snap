@@ -28,6 +28,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   mainSrcThumbnail={null}
   metadataLabel="Metadata"
   nextLabel="Next image"
+  nextLineMetadaTip={null}
   nextSrc={null}
   nextSrcThumbnail={null}
   onAfterOpen={[Function]}
@@ -45,6 +46,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
   onRotateImage={null}
   onViewOriginal={null}
   openMetadataTip={null}
+  preLineMetadaTip={null}
   prevLabel="Previous image"
   prevSrc={null}
   prevSrcThumbnail={null}
@@ -606,6 +608,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -614,6 +617,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -846,6 +850,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -854,6 +859,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -1202,6 +1208,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1210,6 +1217,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1442,6 +1450,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1450,6 +1459,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -1802,6 +1812,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                      id="preLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -1810,6 +1821,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                      id="nextLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2042,6 +2054,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                      id="preLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2050,6 +2063,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                   >
                                                     <button
                                                       class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                      id="nextLineMetadaButton"
                                                       type="button"
                                                     />
                                                   </li>
@@ -2426,6 +2440,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2434,6 +2449,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2666,6 +2682,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -2674,6 +2691,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -3022,6 +3040,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3030,6 +3049,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3262,6 +3282,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3270,6 +3291,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -3622,6 +3644,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3630,6 +3653,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3862,6 +3886,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -3870,6 +3895,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -4239,6 +4265,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4247,6 +4274,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4479,6 +4507,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                id="preLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4487,6 +4516,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                             >
                                               <button
                                                 class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                id="nextLineMetadaButton"
                                                 type="button"
                                               />
                                             </li>
@@ -4835,6 +4865,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -4843,6 +4874,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5075,6 +5107,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                  id="preLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5083,6 +5116,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                               >
                                                 <button
                                                   class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                  id="nextLineMetadaButton"
                                                   type="button"
                                                 />
                                               </li>
@@ -5435,6 +5469,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5443,6 +5478,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5675,6 +5711,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__upMoveButton"
+                                                    id="preLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>
@@ -5683,6 +5720,7 @@ exports[`Snapshot Testing Lightbox renders properly" 1`] = `
                                                 >
                                                   <button
                                                     class="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__downMoveButton"
+                                                    id="nextLineMetadaButton"
                                                     type="button"
                                                   />
                                                 </li>

@@ -24,6 +24,19 @@ const extendedCommonProps = {
   nextSrc: '/fake/image/src2.jpg',
 };
 
+const originalConsoleError = console.error;
+beforeAll(() => {
+  console.error = (...args) => {
+    if (typeof args[0] === 'string' && args[0].includes('The prop `transition.timeout` is marked as required in `PopperContent`')) {
+      return;
+    }
+    originalConsoleError(...args);
+  };
+});
+afterAll(() => {
+  console.error = originalConsoleError;
+});
+
 describe('Lightbox structure', () => {
   const wrapper = mount(<Lightbox {...commonProps} />);
 
