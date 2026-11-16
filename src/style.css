@@ -282,8 +282,8 @@
   opacity: 1;
 }
 
-.ril__builtinButton:hover,
-.ril__builtinButton:focus {
+.PC-image-previewer .ril__builtinButton:hover,
+.PC-image-previewer .ril__builtinButton:focus {
   background-color: #666;
   opacity: 1;
 }
@@ -301,7 +301,7 @@
   opacity: 0.5;
 }
 
-.ril__builtinButtonDisabled:hover {
+.PC-image-previewer .ril__builtinButtonDisabled:hover {
   opacity: 0.5;
 }
 

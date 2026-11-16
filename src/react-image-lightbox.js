@@ -1471,7 +1471,7 @@ class ReactImageLightbox extends Component {
         ...ReactImageLightbox.getTransform({
           ...transforms,
           ...bestImageInfo,
-          isShowSideNav: imageItems.length > 1,
+          isShowSideNav: !this.isMobile && imageItems.length > 1,
         }),
       };
 
@@ -1740,7 +1740,7 @@ class ReactImageLightbox extends Component {
                   className="ril-close ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__closeButton"
                   onClick={!isAnimating ? this.requestClose : undefined} // Ignore clicks during animation
                 />
-                {isDidMount && (<Tooltip target='close-btn' placement='bottom'>{closeTip}</Tooltip>)}
+                {isDidMount && !this.isMobile && (<Tooltip target='close-btn' placement='bottom'>{closeTip}</Tooltip>)}
               </li>
             </ul>
           </div>
@@ -1776,7 +1776,7 @@ class ReactImageLightbox extends Component {
                       : undefined
                   }
                 />
-                {isDidMount && (<Tooltip target='zoomInButton' placement='top'>{zoomInTip}</Tooltip>)}
+                {isDidMount && !this.isMobile && (<Tooltip target='zoomInButton' placement='top'>{zoomInTip}</Tooltip>)}
               </li>
             )}
 
@@ -1804,7 +1804,7 @@ class ReactImageLightbox extends Component {
                       : undefined
                   }
                 />
-                {isDidMount && (<Tooltip target='zoomOutButton' placement='top'>{zoomOutTip}</Tooltip>)}
+                {isDidMount && !this.isMobile && (<Tooltip target='zoomOutButton' placement='top'>{zoomOutTip}</Tooltip>)}
               </li>
             )}
             {onRotateImage && (
@@ -1821,7 +1821,7 @@ class ReactImageLightbox extends Component {
                   ].join(' ')}
                   onClick={this.rotateImage}
                 />
-                {isDidMount && (<Tooltip target='rotateButton' placement='top'>{rotateTip}</Tooltip>)}
+                {isDidMount && !this.isMobile && (<Tooltip target='rotateButton' placement='top'>{rotateTip}</Tooltip>)}
               </li>
             )}
             {!this.isMobile && (onClickDownload || onClickDelete) && (
@@ -1863,7 +1863,7 @@ class ReactImageLightbox extends Component {
                   className="ril-toolbar__item__child ril__toolbarItemChild ril__builtinButton ril__OCR"
                   onClick={onOCR}
                 />
-                {isDidMount && (<Tooltip target='OCRButton' placement='top'>{OCRLabel}</Tooltip>)}
+                {isDidMount && !this.isMobile && (<Tooltip target='OCRButton' placement='top'>{OCRLabel}</Tooltip>)}
               </li>
             )}
             {onViewOriginal && (
