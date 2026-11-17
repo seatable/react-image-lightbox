@@ -279,6 +279,18 @@ class ReactImageLightbox extends Component {
     return !this.moveRequested;
   }
 
+  componentDidUpdate(prevProps) {
+    if (!this.isMobile) {
+      return;
+    }
+
+    const hadMobileFooter = !!(prevProps.onRotateImage || prevProps.onClickDownload || prevProps.onClickDelete);
+    const hasMobileFooter = !!(this.props.onRotateImage || this.props.onClickDownload || this.props.onClickDelete);
+    if (hadMobileFooter !== hasMobileFooter) {
+      this.forceUpdate();
+    }
+  }
+
   componentWillUnmount() {
     this.didUnmount = true;
     Object.keys(this.listeners).forEach(type => {
