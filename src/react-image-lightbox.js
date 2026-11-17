@@ -62,7 +62,7 @@ class ReactImageLightbox extends Component {
   }
 
   // Request to transition to the previous image
-  static getTransform({isShowSideNav, x = 0, y = 0, zoom = 1, width, targetWidth }) {
+  static getTransform({isShowSideNav, isMobile, x = 0, y = 0, zoom = 1, width, targetWidth }) {
     let nextX = x;
     let windowWidth = getWindowWidth();
     if (isShowSideNav) {
@@ -71,7 +71,7 @@ class ReactImageLightbox extends Component {
     if (width > windowWidth) {
       nextX += (windowWidth - width) / 2;
     }
-    const scaleFactor = zoom * (targetWidth / width) * 0.95;
+    const scaleFactor = zoom * (targetWidth / width) * (isMobile ? 1 : 0.95);
 
     return {
       transform: `translate3d(${nextX}px,${y}px,0) scale3d(${scaleFactor},${scaleFactor},1)`,
@@ -118,6 +118,7 @@ class ReactImageLightbox extends Component {
 
     // Refs
     this.outerEl = React.createRef();
+    this.innerEl = React.createRef();
     this.zoomInBtn = React.createRef();
     this.zoomOutBtn = React.createRef();
     this.caption = React.createRef();
@@ -450,8 +451,9 @@ class ReactImageLightbox extends Component {
    * Get the size of the lightbox in pixels
    */
   getLightboxRect() {
-    if (this.outerEl.current) {
-      return this.outerEl.current.getBoundingClientRect();
+    const lightboxEl = this.isMobile ? this.innerEl.current : this.outerEl.current;
+    if (lightboxEl) {
+      return lightboxEl.getBoundingClientRect();
     }
 
     return {
@@ -1439,6 +1441,7 @@ class ReactImageLightbox extends Component {
       isDidMount
     } = this.state;
 
+    const hasMobileFooter = this.isMobile && (onRotateImage || onClickDownload || onClickDelete);
     const boxSize = this.getLightboxRect();
     let transitionStyle = {};
     const isAnimating = this.isAnimating();
@@ -1472,6 +1475,7 @@ class ReactImageLightbox extends Component {
           ...transforms,
           ...bestImageInfo,
           isShowSideNav: !this.isMobile && imageItems.length > 1,
+          isMobile: this.isMobile,
         }),
       };
 
@@ -1656,8 +1660,12 @@ class ReactImageLightbox extends Component {
           <div // eslint-disable-line jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events
             // Image holder
             className="ril-inner ril__inner"
+            ref={this.innerEl}
             onClick={clickOutsideToClose ? this.closeIfClickInner : undefined}
-            style={sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}}
+            style={{
+              ...(sidePanel ? { right: sidePanel.width, transition: 'right 0.3s ease' } : {}),
+              ...(this.isMobile ? { top: hasMobileFooter ? 72 : 48, bottom: hasMobileFooter ? 96 : 0 } : {}),
+            }}
           >
             {images}
           </div>
@@ -1880,44 +1888,25 @@ class ReactImageLightbox extends Component {
             )}
           </div>
         </div>
-        {this.isMobile && (
+        {hasMobileFooter && (
           <div className="image-footer-choice mobile-image-footer-choice">
             <div className="image-footer-icon">
-              <div className='image-footer-right-icons'>
-                {onRotateImage && (
-                  <li className="ril-toolbar__item ril__toolbarItem">
-                    <button
-                      type="button"
-                      style={{marginRight: '16px'}}
-                      aria-label={rotateImageLabel}
-                      className={[
-                        'ril-rotate',
-                        'ril__toolbarItemChild',
-                        'ril__builtinButton',
-                        'ril__rotateButton',
-                        'image-footer-choice-item',
-                      ].join(' ')}
-                      onClick={this.rotateImage}
-                    />
-                  </li>
-                )}
-                {onClickDownload && (
-                  <li className="ril-toolbar__item ril__toolbarItem">
-                    <button
-                      type="button"
-                      aria-label={downloadImageLabel}
-                      className={[
-                        'ril-rotate',
-                        'ril__toolbarItemChild',
-                        'ril__builtinButton',
-                        'ril__downloadButton',
-                        'image-footer-choice-item',
-                      ].join(' ')}
-                      onClick={onClickDownload}
-                    />
-                  </li>
-                )}
-              </div>
+              {onClickDownload && (
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    aria-label={downloadImageLabel}
+                    className={[
+                      'ril-rotate',
+                      'ril__toolbarItemChild',
+                      'ril__builtinButton',
+                      'ril__downloadButton',
+                      'image-footer-choice-item',
+                    ].join(' ')}
+                    onClick={onClickDownload}
+                  />
+                </li>
+              )}
               {onClickDelete &&
                 <li className="ril-toolbar__item ril__toolbarItem">
                   <button
@@ -1928,6 +1917,25 @@ class ReactImageLightbox extends Component {
                   />
                 </li>
               }
+              {onRotateImage && (onClickDownload || onClickDelete) && (
+                <div className="ril__divider"></div>
+              )}
+              {onRotateImage && (
+                <li className="ril-toolbar__item ril__toolbarItem">
+                  <button
+                    type="button"
+                    aria-label={rotateImageLabel}
+                    className={[
+                      'ril-rotate',
+                      'ril__toolbarItemChild',
+                      'ril__builtinButton',
+                      'ril__rotateButton',
+                      'image-footer-choice-item',
+                    ].join(' ')}
+                    onClick={this.rotateImage}
+                  />
+                </li>
+              )}
             </div>
           </div>
         )}

@@ -519,68 +519,60 @@
 }
 
 /* mobile */
+.mobile-image-previewer .ril__image,
+.mobile-image-previewer .ril__imagePrev,
+.mobile-image-previewer .ril__imageNext {
+  top: 0;
+  bottom: 0;
+}
+
+.mobile-image-previewer .ril__caption {
+  display: none;
+}
+
+.mobile-image-previewer .ril__toolbarLeftSide {
+  padding-left: 16px;
+}
+
 .mobile-image-previewer .ril-toolbar .ril__toolbarRightSide {
-  padding-right: 14px;
+  padding-right: 0;
+}
+
+.mobile-image-previewer .ril__toolbarRightSide .ril__toolbarItem {
+  width: 48px;
+  height: 48px !important;
 }
 
 .image-footer-choice.mobile-image-footer-choice {
-  height: 100px;
-  background-color: #000;
-  z-index: 1052;
-  padding: 0;
-}
-
-.mobile-image-footer-choice {
-  height: 30px;
-  width: 100%;
-  border-radius: 2px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  bottom: 0;
+  width: max-content;
+  height: 56px;
+  box-sizing: border-box;
   position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  border-radius: 8px;
+  background-color: rgba(68, 68, 68, 0.75);
   color: #fff;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  padding:0 3px;
-  justify-content: space-between;
-  align-items: center;
+  z-index: 1052;
+  padding: 4px 16px;
 }
 
 .mobile-image-footer-choice .image-footer-icon {
   display: flex;
-  justify-content: center;
-  align-items: center
-}
-
-.mobile-image-footer-choice .image-footer-icon .image-footer-right-icons {
-  display: flex;
-  justify-content: center;
   align-items: center;
   gap: 16px;
 }
 
-.mobile-image-footer-choice .image-footer-icon span {
-  cursor: pointer;
-  display: flex;
-  width: 24px;
-  height: 24px;
-  justify-content: center;
-  align-items: center;
-  color: #dbdbdb;
+.mobile-image-footer-choice .ril__divider {
+  margin: 0 8px;
 }
 
-.image-footer-choice.mobile-image-footer-choice .image-footer-icon {
-  width: 100%;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-  margin: 0 20px;
-}
-
-.mobile-image-footer-choice .image-footer-icon .image-footer-choice-item {
-  height: 40px;
-  width: 40px;
-  border-radius: 5px;
-  background-color: #333;
+.mobile-image-footer-choice .image-footer-choice-item {
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  background-size: 24px;
 }
 
 .ril__outer .ril-toolbar .ril-close {
@@ -590,4 +582,10 @@
 
 .ril__outer .ril__toolbarItem button {
   background-size: 20px;
+}
+
+.mobile-image-previewer .ril-toolbar .ril-close {
+  width: 48px;
+  height: 48px;
+  background-size: 16px;
 }
